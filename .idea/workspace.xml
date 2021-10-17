@@ -20,10 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b891f42-733c-456c-b631-ef3728b88ebb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/bookmark.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/bookmark.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bookmark.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/android/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/android/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/android/app/google-services.json" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/android/app/google-services.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/android/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/android/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/codebase/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/lib/main.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/lib/utils/main/routes.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/lib/utils/main/routes.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/pubspec.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/pubspec.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/codebase/test/widget_test.dart" beforeDir="false" afterPath="$PROJECT_DIR$/codebase/test/widget_test.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,15 +76,24 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="130" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634408035567">
+    <state x="300" y="182" key="#Inspections" timestamp="1634499994794">
       <screen x="0" y="25" width="1680" height="954" />
     </state>
-    <state x="130" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.954@0.25.1680.954" timestamp="1634408035567" />
+    <state x="300" y="182" key="#Inspections/0.25.1680.954@0.25.1680.954" timestamp="1634499994794" />
+    <state x="130" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1634500058916">
+      <screen x="0" y="25" width="1680" height="954" />
+    </state>
+    <state x="130" y="159" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.25.1680.954@0.25.1680.954" timestamp="1634500058916" />
     <state x="100" y="125" width="1333" height="750" key="AVDManager" timestamp="1634408652758">
       <screen x="0" y="25" width="1680" height="954" />
     </state>
     <state x="100" y="125" width="1333" height="750" key="AVDManager/0.25.1680.954@0.25.1680.954" timestamp="1634408652758" />
+    <state x="516" y="418" key="VCS.ChangelistChooser" timestamp="1634499926593">
+      <screen x="0" y="25" width="1680" height="954" />
+    </state>
+    <state x="516" y="418" key="VCS.ChangelistChooser/0.25.1680.954@0.25.1680.954" timestamp="1634499926593" />
   </component>
 </project>
