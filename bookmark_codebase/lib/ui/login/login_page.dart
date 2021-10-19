@@ -1,4 +1,6 @@
+import 'package:bookmark_codebase/business_logic/providers/google_sign_in.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -11,7 +13,10 @@ class LoginPage extends StatelessWidget {
           height: 40,
           width: 90,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              final provider = context.read<GoogleSignInProvider>();
+              provider.googleLogin();
+            },
             child: Center(
               child: Text('ورود'),
             ),

@@ -12,6 +12,9 @@
       <excludeFolder url="file://$MODULE_DIR$/codebase/.dart_tool" />
       <excludeFolder url="file://$MODULE_DIR$/codebase/.pub" />
       <excludeFolder url="file://$MODULE_DIR$/codebase/build" />
+      <excludeFolder url="file://$MODULE_DIR$/bookmark_codebase/.dart_tool" />
+      <excludeFolder url="file://$MODULE_DIR$/bookmark_codebase/.pub" />
+      <excludeFolder url="file://$MODULE_DIR$/bookmark_codebase/build" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 26 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
