@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../main.dart';
 
 final Map<String, Widget Function(BuildContext)> routes = {
-  '/myApp': (_) => MyApp(),
-  '/': (_) => LoginPage(),
+  '/myApp': (_) => const MyApp(),
+  '/': (_) => const LoginPage(),
 
   // '/': (_) => const ExpansionWidget(
   //     readingStatus: ReadingStatus.goingToRead,

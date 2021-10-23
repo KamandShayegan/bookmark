@@ -1,4 +1,4 @@
-import 'package:bookmark_codebase/business_logic/providers/google_sign_in.dart';
+import 'package:bookmark_codebase/business_logic/providers/google_sign_in_provider.dart';
 import 'package:bookmark_codebase/utils/main/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -7,13 +7,12 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -22,7 +21,15 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          primarySwatch: Colors.red,
+          // primarySwatch: Colors.blue,
+          // primaryColor: Colors.black,
+          textTheme: const TextTheme(
+            headline1: TextStyle(
+              color: Colors.white,
+              fontFamily: 'iransans',
+              fontSize: 30,
+            ),
+          ),
         ),
         routes: routes,
         initialRoute: '/',
