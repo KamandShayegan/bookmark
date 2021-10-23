@@ -5,43 +5,46 @@ import 'package:google_sign_in/google_sign_in.dart';
 class GoogleSignInProvider extends ChangeNotifier {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
+  GoogleSignInAccount? _user;
 
-  Future<String?> signInwithGoogle() async {
+  GoogleSignInAccount get user => _user!;
+
+  Future signInwithGoogle() async {
     try {
-      final GoogleSignInAccount? googleSignInAccount =
-          await _googleSignIn.signIn();
-      final GoogleSignInAuthentication googleSignInAuthentication =
-          await googleSignInAccount!.authentication;
-      final AuthCredential credential = GoogleAuthProvider.credential(
-        accessToken: googleSignInAuthentication.accessToken,
-        idToken: googleSignInAuthentication.idToken,
-      );
-      await _auth.signInWithCredential(credential);
+      final _googleUser = await _googleSignIn.signIn();
+
+      if (_googleUser == null) return;
+      _user = _googleUser;
+      final googleAuth = await _googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+      await FirebaseAuth.instance.signInWithCredential(credential);
+      notifyListeners();
     } on FirebaseAuthException catch (_) {
       rethrow;
     }
-    notifyListeners();
   }
 
   Future<void> signOutFromGoogle() async {
-    await _googleSignIn.signOut();
+    await _googleSignIn.disconnect();
     await _auth.signOut();
+    await _googleSignIn.signOut();
     notifyListeners();
   }
 }
-  // final googleSignIn = GoogleSignIn(scopes: <String>['email', 'profile']);
-  // GoogleSignInAccount? _user;
-  // GoogleSignInAccount get user => _user!;
+// final googleSignIn = GoogleSignIn(scopes: <String>['email', 'profile']);
+// GoogleSignInAccount? _user;
+// GoogleSignInAccount get user => _user!;
 
-  // Future googleLogin() async {
-  //   final googleUser = await googleSignIn.signIn();
-  //   if (googleUser == null) return;
-  //   _user = googleUser;
-  //   final googleAuth = await googleUser.authentication;
-  //   final credential = GoogleAuthProvider.credential(
-  //       accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
-  //   await FirebaseAuth.instance.signInWithCredential(credential);
+// Future googleLogin() async {
+//   final googleUser = await googleSignIn.signIn();
+//   if (googleUser == null) return;
+//   _user = googleUser;
+//   final googleAuth = await googleUser.authentication;
+//   final credential = GoogleAuthProvider.credential(
+//       accessToken: googleAuth.accessToken, idToken: googleAuth.idToken);
+//   await FirebaseAuth.instance.signInWithCredential(credential);
 
-  //   notifyListeners();
-  // }
+//   notifyListeners();
+// }
 // }

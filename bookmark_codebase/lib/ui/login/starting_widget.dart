@@ -1,10 +1,10 @@
-import 'package:bookmark_codebase/ui/login/logged_in_widget.dart';
-import 'package:bookmark_codebase/ui/login/sign_up_widget.dart';
+import 'package:bookmark_codebase/ui/login/login_page.dart';
+import 'package:bookmark_codebase/ui/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+class StartingWidget extends StatelessWidget {
+  const StartingWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,13 +17,13 @@ class HomePage extends StatelessWidget {
               child: LinearProgressIndicator(),
             );
           } else if (snapshot.hasData) {
-            return const LoggedInWidget();
+            return const Profile();
           } else if (snapshot.hasError) {
             return const Center(
               child: Text('STH IS WRONG!'),
             );
           }
-          return const SignUpWidget();
+          return const LoginPage();
         },
       ),
     );

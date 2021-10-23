@@ -1,5 +1,5 @@
 import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
-import 'package:bookmark_codebase/utils/methods/set_color.dart';
+import 'package:bookmark_codebase/utils/methods/set_by_reading_status/set_color_by_reading_status.dart';
 import 'package:flutter/material.dart';
 
 class ExpansionWidget extends StatefulWidget {
@@ -26,7 +26,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget> {
       decoration: BoxDecoration(
         border: Border.all(
           width: 3,
-          color: setColor(widget.readingStatus),
+          color: setColorByReadingStatus(widget.readingStatus),
         ),
         borderRadius: BorderRadius.circular(8),
       ),

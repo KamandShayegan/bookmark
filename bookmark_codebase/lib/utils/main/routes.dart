@@ -1,11 +1,11 @@
-import 'package:bookmark_codebase/ui/login/login_page.dart';
+import 'package:bookmark_codebase/ui/login/starting_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../../main.dart';
 
 final Map<String, Widget Function(BuildContext)> routes = {
   '/myApp': (_) => const MyApp(),
-  '/': (_) => const LoginPage(),
+  '/': (_) => const StartingWidget(),
 
   // '/': (_) => const ExpansionWidget(
   //     readingStatus: ReadingStatus.goingToRead,

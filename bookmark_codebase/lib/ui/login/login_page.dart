@@ -13,21 +13,33 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return RTLDirection(
       child: Scaffold(
-          body: Center(
+          body: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 40),
+            child: Center(
         child: Column(
-          children: [
-            SvgPicture.asset(SvgPaths.loginLogo, height: Sizes.loginLogo),
-            const SizedBox(
-              height: 16,
-            ),
-            const Text(
-              StringConstants.landing,
-              textAlign: TextAlign.center,
-            ),
-            const GoogleSignInButton(),
-          ],
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              Column(
+                children: [
+                  const SizedBox(height: 48,),
+                  SvgPicture.asset(SvgPaths.loginLogo, height: Sizes.loginLogo),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Text(
+                    StringConstants.landing,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8,),
+              const GoogleSignInButton(),
+              // SizedBox(height: Sizes.fromBottom,)
+            ],
         ),
-      )),
+      ),
+          )),
     );
   }
 }

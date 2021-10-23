@@ -21,14 +21,63 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+          fontFamily: 'iransans',
           // primarySwatch: Colors.blue,
           // primaryColor: Colors.black,
           textTheme: const TextTheme(
-            headline1: TextStyle(
-              color: Colors.white,
-              fontFamily: 'iransans',
-              fontSize: 30,
-            ),
+            //AppBar font style.
+              headline2: TextStyle(
+                fontSize: 11,
+              ),
+              button: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+              //H7-18 Medium
+              headline1: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500,
+              ),
+              subtitle1: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+              subtitle2: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+              ),
+              bodyText1: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),
+              bodyText2: TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+              ),
+              caption: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              ),
+              overline: TextStyle(
+                fontWeight: FontWeight.w400,
+                fontSize: 10,
+              ),
+              headline3: TextStyle(
+                  fontWeight: FontWeight.w800,
+                  fontFamily: 'ExtraBold',
+                  fontSize: 18),
+              headline4: TextStyle(
+                  fontFamily: 'ExtraBold',
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800),
+              headline5: TextStyle(
+                fontFamily: 'FaNum',
+                fontSize: 12,
+              ),
+              headline6: TextStyle(fontFamily: 'FaNum', fontSize: 10)
+            // mosradmard
+            // mostafa33
+            // 239728
           ),
         ),
         routes: routes,

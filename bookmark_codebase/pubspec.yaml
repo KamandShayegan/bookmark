@@ -42,6 +42,8 @@ dependencies:
   google_api_availability: ^3.0.1
   firebase_database: ^8.0.0
   flutter_svg: ^0.23.0+1
+  translator: ^0.1.7
+  persian_number_utility: ^0.3.4
 
 dev_dependencies:
   flutter_test:
@@ -81,15 +83,20 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  # example:
   fonts:
-    - family: iransans
+    - family: IranYekanWeb
       fonts:
-        - asset: assets/fonts/iransans.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
+        - asset: assets/fonts/iranyekanwebmedium.ttf
+    #          - asset: assets/fonts/IRANYEKANFN
+    #       - asset: fonts/Schyler-Italic.ttf
+    #         style: italic
+    - family: FaNum
+      fonts:
+        - asset: assets/fonts/IRANYekanRegularFaNum.ttf
+    - family: ExtraBold
+      fonts:
+        - asset: assets/fonts/IRANYekanExtraBoldFaNum.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
   #

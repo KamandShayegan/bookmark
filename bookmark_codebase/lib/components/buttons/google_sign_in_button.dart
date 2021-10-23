@@ -1,4 +1,5 @@
 import 'package:bookmark_codebase/business_logic/providers/google_sign_in_provider.dart';
+import 'package:bookmark_codebase/utils/constants/size_constants.dart';
 import 'package:bookmark_codebase/utils/constants/string_constants.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
@@ -10,31 +11,36 @@ class GoogleSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = context.read<GoogleSignInProvider>();
 
     return TextButton(
-      onPressed: () => provider.signInwithGoogle(),
+      onPressed: () {
+        final provider = context.read<GoogleSignInProvider>();
+        provider.signInwithGoogle();},
       child: IntrinsicHeight(
         child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Text(StringConstants.googleSignIn,
-                style: Theme.of(context).textTheme.headline1),
+                style: Theme.of(context).textTheme.button),
             const SizedBox(
               width: 8,
             ),
-            const VerticalDivider(
-              width: 24,
+            Container(
+              height: 60,
+              width: 2,
               color: Colors.white,
-              thickness: 1,
             ),
-            const SizedBox(
-              width: 8,
-            ),
-            SvgPicture.asset(SvgPaths.googleLogo, height: 40),
+            SvgPicture.asset(SvgPaths.googleLogo, height: 24),
           ],
         ),
       ),
       style: ButtonStyle(
+        padding: MaterialStateProperty.all<EdgeInsetsGeometry>(
+          const EdgeInsets.all(0),
+        ),
+        fixedSize: MaterialStateProperty.all<Size>(
+          const Size(Sizes.bigButtonWidth, Sizes.buttonHeight),
+        ),
         backgroundColor: MaterialStateProperty.all<Color>(Colors.black),
       ),
     );
