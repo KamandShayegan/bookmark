@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
               Column(
                 children: [
                   const SizedBox(height: 48,),
-                  SvgPicture.asset(SvgPaths.loginLogo, height: Sizes.loginLogo),
+                  SvgPicture.asset(SvgPaths.bookshelf, height: Sizes.loginLogo,),
                   const SizedBox(
                     height: 24,
                   ),

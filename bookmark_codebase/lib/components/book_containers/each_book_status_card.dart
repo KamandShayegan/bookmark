@@ -21,6 +21,7 @@ class EachBookStatusCard extends StatelessWidget {
   Widget build(BuildContext context) {
 
     String numOfBooks = numberOfBooks.toString();
+    // numOfBooks = numOfBooks.toPersianDigit();
 
     return Container(
       margin: const EdgeInsets.only(bottom: 16, top: 8),
@@ -32,11 +33,11 @@ class EachBookStatusCard extends StatelessWidget {
                 width: 4,
               ),
               Text(setStringByReadingStatus(readingStatus),
-                  style: Theme.of(context).textTheme.bodyText1),
+                  style: Theme.of(context).textTheme.subtitle2),
               const SizedBox(
-                width: 4,
+                width: 8,
               ),
-              Text('($numberOfBooks)')
+              Text('($numberOfBooks)', style: Theme.of(context).textTheme.headline5,)
             ],
           ),
           const SizedBox(

@@ -1,4 +1,4 @@
-import 'package:bookmark_codebase/business_logic/providers/google_sign_in_provider.dart';
+import 'package:bookmark_codebase/business_logic/services/providers/google_sign_in_provider.dart';
 import 'package:bookmark_codebase/utils/constants/size_constants.dart';
 import 'package:bookmark_codebase/utils/constants/string_constants.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
@@ -11,17 +11,22 @@ class GoogleSignInButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return TextButton(
       onPressed: () {
         final provider = context.read<GoogleSignInProvider>();
-        provider.signInwithGoogle();},
+        provider.signInwithGoogle();
+      },
       child: IntrinsicHeight(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text(StringConstants.googleSignIn,
-                style: Theme.of(context).textTheme.button),
+            Text(
+              StringConstants.googleSignIn,
+              style: Theme.of(context)
+                  .textTheme
+                  .button!
+                  .apply(color: Colors.white),
+            ),
             const SizedBox(
               width: 8,
             ),

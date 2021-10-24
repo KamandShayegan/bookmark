@@ -1,4 +1,4 @@
-import 'package:bookmark_codebase/business_logic/providers/google_sign_in_provider.dart';
+import 'package:bookmark_codebase/business_logic/services/providers/google_sign_in_provider.dart';
 import 'package:bookmark_codebase/utils/main/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          fontFamily: 'iransans',
+          fontFamily: 'IranYekanWeb',
           // primarySwatch: Colors.blue,
           // primaryColor: Colors.black,
           textTheme: const TextTheme(
@@ -47,8 +47,8 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
               bodyText1: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w400,
+                fontSize: 14,
+                fontWeight: FontWeight.w100,
               ),
               bodyText2: TextStyle(
                 fontSize: 14,
@@ -72,9 +72,9 @@ class MyApp extends StatelessWidget {
                   fontWeight: FontWeight.w800),
               headline5: TextStyle(
                 fontFamily: 'FaNum',
-                fontSize: 12,
+                fontSize: 14,
               ),
-              headline6: TextStyle(fontFamily: 'FaNum', fontSize: 10)
+              headline6: TextStyle(fontFamily: 'FaNum', fontSize: 12)
             // mosradmard
             // mostafa33
             // 239728

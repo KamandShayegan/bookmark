@@ -8,7 +8,7 @@ class ProfilesTopCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 40, bottom: 16),
+      padding: const EdgeInsets.only(top: 48, bottom: 16),
       child: const Align(
         alignment: Alignment.center,
         child: UsersGoogleAccountDetails(),
