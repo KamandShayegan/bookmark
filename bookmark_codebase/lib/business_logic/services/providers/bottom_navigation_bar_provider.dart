@@ -26,7 +26,7 @@ class BottomNavigationBarProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  static List<bool> _clickedState = [false, false];
+  static List<bool> _clickedState = [false, true];
 
   get getClickedState => _clickedState;
 }

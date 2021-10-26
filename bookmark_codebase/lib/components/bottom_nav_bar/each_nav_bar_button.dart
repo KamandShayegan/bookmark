@@ -1,5 +1,7 @@
 import 'package:bookmark_codebase/business_logic/services/providers/bottom_navigation_bar_provider.dart';
+import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -20,10 +22,10 @@ class NavBarButton extends StatelessWidget {
         Container(
           padding: EdgeInsets.all(8),
           decoration: BoxDecoration(
-            color: isOn ? Colors.black : Colors.white,
+            // color: isOn ? MyColors.bone : Colors.white,
             borderRadius: BorderRadius.circular(8),
           ),
-          width: size.width * 0.18,
+          width: size.width * 0.5,
           height: size.height * 0.10,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -32,25 +34,24 @@ class NavBarButton extends StatelessWidget {
                 height: 20,
                 child: Center(
                   child: SvgPicture.asset(
-                    _setButtonSVG(buttonNo, isOn),
-                    color: isOn ? Colors.white : Colors.black,
+                    _setButtonSVG(buttonNo),
+                    color: _setSvgColor(isOn),
                     width: 24,
                   ),
                 ),
               ),
-              _setBelowButtonText(buttonNo, isOn)
+              Text(
+                _setBelowButtonText(buttonNo),
+                style: _setBelowButtonTextStyle(isOn)
+              ),
             ],
           ),
         ),
         GestureDetector(
-          onTap: () {
-            context
-                .read<BottomNavigationBarProvider>()
-                .setCurrentPage(buttonNo);
-          },
+          onTap: () => _turnButtonOn(context),
           child: Container(
-            height: 70,
-            width: 60,
+            width: size.width * 0.5,
+            height: size.height * 0.10,
             color: Colors.transparent,
           ),
         ),
@@ -58,48 +59,41 @@ class NavBarButton extends StatelessWidget {
     );
   }
 
-  String _setButtonSVG(int buttonNo, bool isOn) {
+  String _setButtonSVG(int buttonNo) {
     switch (buttonNo) {
       case 1:
-        if (isOn) {
-          return NavBarIcon.selectedProfile;
-        } else {
-          return NavBarIcon.unSelectedProfile;
-        }
+        return NavBarIcon.unSelectedProfile;
       case 0:
-        if (isOn) {
-          return NavBarIcon.selectedBook;
-        } else {
-          return NavBarIcon.unSelectedBook;
-        }
+        return NavBarIcon.selectedBook;
+
       default:
         return '';
     }
   }
 
-  Text _setBelowButtonText(int buttonNo, bool isOn) {
-    Text? text;
-    if (isOn && buttonNo == 1) {
-      text = const Text(
-        'پروفایل',
-        style: TextStyle(color: Colors.white),
-      );
-    } else if (!isOn && buttonNo == 1) {
-      text = const Text(
-        'پروفایل',
-        style: TextStyle(color: Colors.black),
-      );
-    } else if (isOn && buttonNo == 0) {
-      text = const Text(
-        'کتابها',
-        style: TextStyle(color: Colors.white),
-      );
-    } else if (!isOn && buttonNo == 0) {
-      text = const Text(
-        'کتابها',
-        style: TextStyle(color: Colors.black),
-      );
+  String _setBelowButtonText(int buttonNo) {
+    if (buttonNo == 1) {
+      return 'پروفایل';
+    } else {
+      return 'کتابها';
     }
-    return text ?? Text('nothing');
+  }
+
+  _turnButtonOn(BuildContext context) {
+    context.read<BottomNavigationBarProvider>().setCurrentPage(buttonNo);
+  }
+
+  TextStyle _setBelowButtonTextStyle(bool isOn){
+    return TextStyle(
+        color: isOn
+            ? MyColors.selectedBottomNavColor
+            : MyColors.unSelectedBottomNavColor,
+        // fontWeight: isOn?FontWeight.w600:FontWeight.w500
+    );
+
+  }
+
+  Color _setSvgColor(bool isOn) {
+    return isOn ? MyColors.selectedBottomNavColor : MyColors.unSelectedBottomNavColor;
   }
 }

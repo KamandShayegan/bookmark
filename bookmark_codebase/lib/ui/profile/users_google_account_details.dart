@@ -15,7 +15,18 @@ class UsersGoogleAccountDetails extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          margin: EdgeInsets.only(right: size.width * 0.14, top: size.height * 0.02),
+          margin: EdgeInsets.only(left: 0, top: size.height * 0.06),
+          child: Align(
+            alignment: Alignment.center,
+            child: SvgPicture.asset(
+              SvgPaths.midShelf,
+              width: size.width * 0.7,
+            ),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.only(
+              right: size.width * 0.14, top: size.height * 0.02),
           child: InkWell(
             onTap: () {
               showDialog(
@@ -29,18 +40,8 @@ class UsersGoogleAccountDetails extends StatelessWidget {
               backgroundColor: Colors.white,
               foregroundColor: Colors.white,
               radius: 48,
-              backgroundImage: NetworkImage(
-                  _user!.photoURL ?? 'https://profiles.utdallas.edu/img/default.png'),
-            ),
-          ),
-        ),
-        Container(
-          margin: EdgeInsets.only(left: 0, top: size.height * 0.06),
-          child: Align(
-            alignment: Alignment.center,
-            child: SvgPicture.asset(
-              SvgPaths.midShelf,
-              width: size.width * 0.7,
+              backgroundImage: NetworkImage(_user!.photoURL ??
+                  'https://profiles.utdallas.edu/img/default.png'),
             ),
           ),
         ),

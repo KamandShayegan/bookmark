@@ -15,10 +15,10 @@ class LoggedInPage extends StatelessWidget {
         context.watch<BottomNavigationBarProvider>();
     Widget currentPage = wModel.getCurrentPage;
 
-    return Stack(
+    return Column(
       children: [
-        currentPage,
-        Align(
+        Expanded(child: currentPage),
+        const Align(
           alignment: Alignment.bottomCenter,
           child: CustomNavigationBar(),
         )
