@@ -13,7 +13,7 @@ class ShowCurrentUsersData extends StatelessWidget {
   Widget build(BuildContext context) {
     final _user = FirebaseAuth.instance.currentUser;
     String usersName = _user!.displayName ?? 'نام شما مشخص نیست';
-    String usersEmail = _user.email ?? 'ایمیل شما مشخص نیست';
+    // String usersEmail = _user.email ?? 'ایمیل شما مشخص نیست';
     String usersImage =
         _user.photoURL ?? 'https://profiles.utdallas.edu/img/default.png';
 

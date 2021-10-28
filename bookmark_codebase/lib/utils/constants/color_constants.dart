@@ -9,7 +9,7 @@ class MyColors {
   static const Color bone = Color(0xffE6BE8A);
 
   //----BOTTOM NAVIGATION BAR:
-static const Color selectedBottomNavColor = Color(0xff486966);
-static Color unSelectedBottomNavColor = Color(0xff87B1AC).withOpacity(0.8);
-
+  static const Color selectedBottomNavColor = Color(0xff486966);
+  static Color unSelectedBottomNavColor =
+      const Color(0xff87B1AC).withOpacity(0.8);
 }

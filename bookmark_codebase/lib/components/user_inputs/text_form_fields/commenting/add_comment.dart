@@ -1,5 +1,4 @@
 import 'package:bookmark_codebase/components/buttons/small_button.dart';
-import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 
 class CommentsTextFormField extends StatelessWidget {
@@ -9,7 +8,9 @@ class CommentsTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: 8,),
+        const SizedBox(
+          height: 8,
+        ),
         TextFormField(
           cursorColor: Colors.grey,
           maxLines: 4,

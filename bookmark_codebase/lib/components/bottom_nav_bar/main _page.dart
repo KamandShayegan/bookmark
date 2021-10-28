@@ -1,4 +1,3 @@
-// ignore: file_names
 // ignore_for_file: file_names
 
 import 'package:bookmark_codebase/business_logic/services/providers/bottom_navigation_bar_provider.dart';

@@ -1,15 +1,29 @@
-import 'package:bookmark_codebase/ui/profile/profile.dart';
+import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
+import 'package:bookmark_codebase/components/user_inputs/text_form_fields/searching/search_book.dart';
+import 'package:bookmark_codebase/utils/constants/size_constants.dart';
 import 'package:flutter/material.dart';
 
 class Page2 extends StatelessWidget {
-  const Page2({Key? key}) : super(key: key);
+  Page2({Key? key}) : super(key: key);
+
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey,
-      body: Center(
-        child: Text('second page'),
+    return RTLDirection(
+      child: Scaffold(
+        // backgroundColor: Colors.grey,
+        body: Container(
+          margin: const EdgeInsets.symmetric(horizontal: 32),
+          child: Center(
+            child: Column(
+              children: [
+                const SizedBox(height: Sizes.fromBottom + 48),
+                SearchBookTextFormField(controller: _controller),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

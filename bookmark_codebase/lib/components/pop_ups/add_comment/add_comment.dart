@@ -1,5 +1,5 @@
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
-import 'package:bookmark_codebase/components/user_inputs/text_form_fields/comment_text_form_field.dart';
+import 'package:bookmark_codebase/components/user_inputs/text_form_fields/commenting/add_comment.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/string_constants.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
@@ -14,14 +14,11 @@ class AddComment extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return RTLDirection(
       child: AlertDialog(
-
         title: const AddCommentTitle(),
-        content: Container(
-            height: size.height * 0.27,
+        content: SizedBox(
+          height: size.height * 0.27,
           width: size.width * 0.7,
-
-          child: CommentsTextFormField(),
-
+          child: const CommentsTextFormField(),
         ),
       ),
     );

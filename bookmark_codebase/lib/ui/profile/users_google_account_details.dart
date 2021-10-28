@@ -1,9 +1,8 @@
-import 'package:bookmark_codebase/components/pop_ups/show_current_users_data.dart';
+import 'package:bookmark_codebase/components/pop_ups/show_current_users_data_and_exit.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:translator/translator.dart';
 
 class UsersGoogleAccountDetails extends StatelessWidget {
   const UsersGoogleAccountDetails({Key? key}) : super(key: key);

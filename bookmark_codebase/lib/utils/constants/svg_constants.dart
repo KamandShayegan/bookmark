@@ -8,14 +8,12 @@ class SvgPaths {
   static const String inbox = 'assets/svg/inbox.svg';
   static const String bookmark = 'assets/svg/bookmark.svg';
   static const String comment = 'assets/svg/comment.svg';
-
-
+  static const String search = 'assets/svg/search.svg';
 }
 
-class NavBarIcon{
-  static const String selectedProfile = 'assets/svg/bottom_nav_bar_icons/selected_profile.svg';
-  static const String unSelectedProfile = 'assets/svg/bottom_nav_bar_icons/unselected_profile.svg';
-  static const String selectedBook = 'assets/svg/bottom_nav_bar_icons/selected_book.svg';
-  static const String unSelectedBook = 'assets/svg/bottom_nav_bar_icons/unselected_book.svg';
-
+class NavBarIcon {
+  static const String unSelectedProfile =
+      'assets/svg/bottom_nav_bar_icons/unselected_profile.svg';
+  static const String selectedBook =
+      'assets/svg/bottom_nav_bar_icons/selected_book.svg';
 }

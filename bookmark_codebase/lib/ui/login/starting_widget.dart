@@ -1,7 +1,5 @@
 import 'package:bookmark_codebase/components/bottom_nav_bar/bottom_nav_bar_provider_indicator.dart';
-import 'package:bookmark_codebase/components/bottom_nav_bar/main%20_page.dart';
 import 'package:bookmark_codebase/ui/login/login_page.dart';
-import 'package:bookmark_codebase/ui/profile/profile.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

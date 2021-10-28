@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="66px" height="64px" viewBox="0 0 66 64" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>search</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Final-UI" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="search" transform="translate(0.000000, 0.000000)" fill="#000000" fill-rule="nonzero">
+            <path d="M26.5,0 C11.8874399,0 0,12.1124051 0,27.0000645 C0,41.8875949 11.8874399,54 26.5,54 C41.1124335,54 53,41.8875949 53,26.9999355 C53,12.1124051 41.1124335,0 26.5,0 Z M26.5,51.3000839 C13.3495822,51.3000839 2.65003798,40.3992804 2.65003798,27.0000645 C2.65003798,13.6009776 13.3495822,2.70004515 26.5,2.70004515 C39.6502912,2.70004515 50.349962,13.6009776 50.349962,27.0000645 C50.349962,40.3991514 39.6502912,51.3000839 26.5,51.3000839 Z" id="Shape"></path>
+            <polygon id="Rectangle" stroke="#979797" transform="translate(56.136618, 55.070907) rotate(-45.000000) translate(-56.136618, -55.070907) " points="54.8291369 43.8472824 57.4914774 43.8416645 57.4440983 66.2945318 54.7817578 66.3001497"></polygon>
+            <polygon id="Rectangle" transform="translate(17.614203, 13.024000) rotate(-45.000000) translate(-17.614203, -13.024000) " points="10.148604 11.7084625 25.0854195 11.6769435 25.079801 14.3395385 10.1429855 14.3710575"></polygon>
+            <polygon id="Rectangle" transform="translate(24.915909, 17.699310) rotate(-45.000000) translate(-24.915909, -17.699310) " points="10.8699007 16.3977852 38.9675355 16.3384948 38.9619176 19.0008353 10.8642828 19.0601257"></polygon>
+            <polygon id="Rectangle" transform="translate(34.892521, 18.352848) rotate(-45.000000) translate(-34.892521, -18.352848) " points="29.3018956 17.0334809 40.4887637 17.0098749 40.4831458 19.6722154 29.2962776 19.6958214"></polygon>
+        </g>
+    </g>
+</svg>

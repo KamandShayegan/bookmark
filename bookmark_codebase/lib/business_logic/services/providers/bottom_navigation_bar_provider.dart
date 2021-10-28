@@ -1,4 +1,3 @@
-
 import 'package:bookmark_codebase/components/bottom_nav_bar/page_one.dart';
 import 'package:bookmark_codebase/components/bottom_nav_bar/page_two.dart';
 import 'package:bookmark_codebase/utils/methods/actions_on_lists/option_selector.dart';
@@ -12,7 +11,7 @@ import 'package:flutter/material.dart';
 
 class BottomNavigationBarProvider extends ChangeNotifier {
   static List<Widget> pages = [
-    const Page2(),
+    Page2(),
     const Page1(),
   ];
 
@@ -22,11 +21,11 @@ class BottomNavigationBarProvider extends ChangeNotifier {
 
   setCurrentPage(int index) {
     _currentPage = pages[index];
-    optionSelector(_clickedState, index);
+    optionSelector(clickedState, index);
     notifyListeners();
   }
 
-  static List<bool> _clickedState = [false, true];
+  static List<bool> clickedState = [false, true];
 
-  get getClickedState => _clickedState;
+  get getClickedState => clickedState;
 }

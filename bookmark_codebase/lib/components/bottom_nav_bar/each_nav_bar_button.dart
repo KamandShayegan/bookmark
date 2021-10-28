@@ -20,7 +20,7 @@ class NavBarButton extends StatelessWidget {
       alignment: Alignment.center,
       children: [
         Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
             // color: isOn ? MyColors.bone : Colors.white,
             borderRadius: BorderRadius.circular(8),
@@ -30,7 +30,7 @@ class NavBarButton extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Container(
+              SizedBox(
                 height: 20,
                 child: Center(
                   child: SvgPicture.asset(
@@ -40,10 +40,8 @@ class NavBarButton extends StatelessWidget {
                   ),
                 ),
               ),
-              Text(
-                _setBelowButtonText(buttonNo),
-                style: _setBelowButtonTextStyle(isOn)
-              ),
+              Text(_setBelowButtonText(buttonNo),
+                  style: _setBelowButtonTextStyle(isOn)),
             ],
           ),
         ),
@@ -83,17 +81,18 @@ class NavBarButton extends StatelessWidget {
     context.read<BottomNavigationBarProvider>().setCurrentPage(buttonNo);
   }
 
-  TextStyle _setBelowButtonTextStyle(bool isOn){
+  TextStyle _setBelowButtonTextStyle(bool isOn) {
     return TextStyle(
-        color: isOn
-            ? MyColors.selectedBottomNavColor
-            : MyColors.unSelectedBottomNavColor,
-        // fontWeight: isOn?FontWeight.w600:FontWeight.w500
+      color: isOn
+          ? MyColors.selectedBottomNavColor
+          : MyColors.unSelectedBottomNavColor,
+      // fontWeight: isOn?FontWeight.w600:FontWeight.w500
     );
-
   }
 
   Color _setSvgColor(bool isOn) {
-    return isOn ? MyColors.selectedBottomNavColor : MyColors.unSelectedBottomNavColor;
+    return isOn
+        ? MyColors.selectedBottomNavColor
+        : MyColors.unSelectedBottomNavColor;
   }
 }

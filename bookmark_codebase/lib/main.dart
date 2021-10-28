@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 
+import 'business_logic/services/providers/bookshelf/handle_bookshelves.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -15,8 +17,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => GoogleSignInProvider(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (context) => GoogleSignInProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => HandlingBookshelvesProvider(),
+        ),
+      ],
       child: MaterialApp(
         title: 'Flutter Demo',
         debugShowCheckedModeBanner: false,
@@ -25,7 +34,7 @@ class MyApp extends StatelessWidget {
           // primarySwatch: Colors.blue,
           // primaryColor: Colors.black,
           textTheme: const TextTheme(
-            //AppBar font style.
+              //AppBar font style.
               headline2: TextStyle(
                 fontSize: 11,
               ),
@@ -75,10 +84,10 @@ class MyApp extends StatelessWidget {
                 fontSize: 14,
               ),
               headline6: TextStyle(fontFamily: 'FaNum', fontSize: 12)
-            // mosradmard
-            // mostafa33
-            // 239728
-          ),
+              // mosradmard
+              // mostafa33
+              // 239728
+              ),
         ),
         routes: routes,
         initialRoute: '/',
