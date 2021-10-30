@@ -1,4 +1,5 @@
 import 'package:bookmark_codebase/business_logic/services/providers/google_sign_in_provider.dart';
+import 'package:bookmark_codebase/utils/methods/angles/rotate_widge_180_degrees.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
@@ -35,9 +36,8 @@ class ExitButton extends StatelessWidget {
         'خروج از حساب کاربری',
         style: Theme.of(context).textTheme.caption!.apply(color: Colors.red),
       ),
-      label: Transform.rotate(
-        angle: 180 * math.pi / 180,
-        child: const FaIcon(
+      label: const Rotator180(
+        child: FaIcon(
           FontAwesomeIcons.signOutAlt,
           color: Colors.red,
           size: 14,

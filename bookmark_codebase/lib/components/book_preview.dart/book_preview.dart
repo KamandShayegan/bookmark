@@ -1,9 +1,12 @@
 import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/components/book_containers/book_cover.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
+import 'package:bookmark_codebase/components/rating/read_only_rating_bar.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/size_constants.dart';
+import 'package:bookmark_codebase/utils/methods/angles/rotate_widge_180_degrees.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class BookPreview extends StatelessWidget {
   final Book book;
@@ -27,7 +30,7 @@ class BookPreview extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: Sizes.fromBottom),
+                const SizedBox(height: Sizes.fromBottom),
                 Center(
                   child: SizedBox(
                     height: size.height * 0.25,
@@ -38,7 +41,7 @@ class BookPreview extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 8,
                 ),
                 Text(
@@ -48,6 +51,18 @@ class BookPreview extends StatelessWidget {
                       .headline3!
                       .apply(color: Colors.black),
                 ),
+                const SizedBox(
+                  height: 4,
+                ),
+                Text(book.author),
+                const SizedBox(
+                  height: 8,
+                ),
+                Rotator180(
+                  child: ReadOnlyRatingBar(
+                    rating: book.rate,
+                  ),
+                )
               ],
             ),
           )),

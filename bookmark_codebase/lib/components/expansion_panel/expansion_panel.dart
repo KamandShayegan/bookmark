@@ -23,16 +23,17 @@ class _ExpansionWidgetState extends State<ExpansionWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
         border: Border.all(
-          width: 3,
+          width: 2,
           color: setColorByReadingStatus(widget.readingStatus),
         ),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(4),
       ),
       child: ExpansionPanelList(
           elevation: 0,
-          animationDuration: const Duration(microseconds: 500),
+          animationDuration: const Duration(seconds: 1),
           expansionCallback: (i, isOpen) {
             setState(() {
               _isOpen = !isOpen;

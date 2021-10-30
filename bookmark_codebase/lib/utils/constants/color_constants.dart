@@ -7,6 +7,7 @@ class MyColors {
   static const Color blue = Colors.blueGrey;
   static const Color purple = Color(0xff9A80C7);
   static const Color bone = Color(0xffE6BE8A);
+  static const Color ratingStars = Colors.amber;
 
   //----BOTTOM NAVIGATION BAR:
   static const Color selectedBottomNavColor = Color(0xff486966);

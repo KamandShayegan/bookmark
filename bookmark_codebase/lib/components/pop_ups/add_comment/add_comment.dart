@@ -1,6 +1,8 @@
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
+import 'package:bookmark_codebase/components/rating/changeable_rating_bar.dart';
 import 'package:bookmark_codebase/components/user_inputs/text_form_fields/commenting/add_comment.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
+import 'package:bookmark_codebase/utils/constants/size_constants.dart';
 import 'package:bookmark_codebase/utils/constants/string_constants.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
@@ -16,9 +18,20 @@ class AddComment extends StatelessWidget {
       child: AlertDialog(
         title: const AddCommentTitle(),
         content: SizedBox(
-          height: size.height * 0.27,
-          width: size.width * 0.7,
-          child: const CommentsTextFormField(),
+          height: size.height * 0.35,
+          child: Column(
+            children: [
+              const ChangeableRatingBar(),
+              const SizedBox(
+                height: Sizes.starSizeForRating,
+              ),
+              SizedBox(
+                height: size.height * 0.27,
+                width: size.width * 0.7,
+                child: const CommentsTextFormField(),
+              ),
+            ],
+          ),
         ),
       ),
     );

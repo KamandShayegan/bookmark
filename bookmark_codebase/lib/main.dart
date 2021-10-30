@@ -1,4 +1,5 @@
 import 'package:bookmark_codebase/business_logic/services/providers/google_sign_in_provider.dart';
+import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/main/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -31,8 +32,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           fontFamily: 'IranYekanWeb',
-          // primarySwatch: Colors.blue,
-          // primaryColor: Colors.black,
+          // primarySwatch: ,
+          // primaryColor: MyColors.blue,
+          scaffoldBackgroundColor: Colors.white,
           textTheme: const TextTheme(
               //AppBar font style.
               headline2: TextStyle(

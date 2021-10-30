@@ -1,6 +1,7 @@
 import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 import 'package:bookmark_codebase/components/pop_ups/add_comment/add_comment.dart';
+import 'package:bookmark_codebase/ui/collections_by_reading_status/all_books_in_a_collection_route.dart';
 import 'package:bookmark_codebase/ui/collections_by_reading_status/books_row.dart';
 import 'package:bookmark_codebase/utils/constants/size_constants.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
@@ -26,7 +27,15 @@ class EachBookStatusCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        showDialog(context: context, builder: (_) => const AddComment());
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => AllBooksInACollection(
+              readingStatus: readingStatus,
+            ),
+          ),
+        );
+        // showDialog(context: context, builder: (_) => const AddComment());
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 16, top: 8),
