@@ -14,7 +14,8 @@ class BookCover extends StatelessWidget {
       return Center(
         child: Container(
           height: size.height * 0.1,
-          width: size.width * 0.14,
+          // height: 40,s
+          // width: size.width * 0.14,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             border: Border.all(color: MyColors.blue),
@@ -34,12 +35,19 @@ class BookCover extends StatelessWidget {
     }
 
     return image == ''
-        ? _makeBookCover(name, context)
-        : ClipRRect(
-            borderRadius: BorderRadius.circular(4),
-            child: Image.network(
-              image,
-              fit: BoxFit.cover,
+        ? _makeBookCover('بدون عکس', context)
+        : SizedBox(
+            // decoration: BoxDecoration(
+            //     // border: Border.all(color: Colors.black),
+            //     ),
+            height: MediaQuery.of(context).size.height * 0.1,
+            width: MediaQuery.of(context).size.width * 0.14,
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(4),
+              child: Image.network(
+                image,
+                fit: BoxFit.contain,
+              ),
             ),
           );
   }

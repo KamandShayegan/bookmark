@@ -6,23 +6,29 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
   List<Book> _isReading = [
     Book(
         name: 'سه شنبه ها با موری',
-        image: 'https://img.ketabrah.ir/img/l/5193640895976714.jpg'),
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(pageCount: 40, name: 'سه شنبه ها با موری', image: ''),
     Book(
         name: 'سه شنبه ها با موری',
-        image: 'https://img.ketabrah.ir/img/l/5193640895976714.jpg'),
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
         name: 'سه شنبه ها با موری',
-        image: 'https://img.ketabrah.ir/img/l/5193640895976714.jpg'),
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
         name: 'سه شنبه ها با موری',
-        image: 'https://img.ketabrah.ir/img/l/5193640895976714.jpg'),
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
         name: 'سه شنبه ها با موری',
-        image: 'https://img.ketabrah.ir/img/l/5193640895976714.jpg'),
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
         name: 'سه شنبه ها با موری',
-        image: 'https://img.ketabrah.ir/img/l/5193640895976714.jpg'),
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
   ];
 
   List<Book> _goingToRead = [

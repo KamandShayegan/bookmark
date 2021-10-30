@@ -2,7 +2,6 @@ import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/components/book_containers/book_cover.dart';
 import 'package:bookmark_codebase/components/book_preview.dart/book_preview.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
-import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:flutter/material.dart';
 
 class EachBook extends StatelessWidget {
@@ -14,7 +13,7 @@ class EachBook extends StatelessWidget {
       context,
       MaterialPageRoute(
         builder: (_) => BookPreview(
-          bookId: book.id,
+          book: book,
         ),
       ),
     );
@@ -27,7 +26,8 @@ class EachBook extends StatelessWidget {
     return GestureDetector(
       onTap: () => _showPreview(context),
       child: Container(
-        // height: size.height * 0.2,
+        // height: size.height * 0.,
+        // height: ,
         width: size.width * 0.14,
         margin: const EdgeInsets.only(right: 8, left: 8),
         decoration: BoxDecoration(
