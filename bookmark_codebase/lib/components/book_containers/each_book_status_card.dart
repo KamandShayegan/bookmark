@@ -1,9 +1,8 @@
 import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
-import 'package:bookmark_codebase/components/pop_ups/add_comment/add_comment.dart';
-import 'package:bookmark_codebase/ui/collections_by_reading_status/all_books_in_a_collection_route.dart';
+import 'package:bookmark_codebase/ui/collections_by_reading_status/expandable_collection.dart';
 import 'package:bookmark_codebase/ui/collections_by_reading_status/books_row.dart';
-import 'package:bookmark_codebase/utils/constants/size_constants.dart';
+import 'package:bookmark_codebase/ui/collections_by_reading_status/going_to_read_collection.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
 import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:bookmark_codebase/utils/methods/set_by_reading_status/set_color_by_reading_status.dart';
@@ -15,7 +14,7 @@ import 'package:provider/provider.dart';
 class EachBookStatusCard extends StatelessWidget {
   final ReadingStatus readingStatus;
 
-  EachBookStatusCard({
+  const EachBookStatusCard({
     Key? key,
     required this.readingStatus,
   }) : super(key: key);
@@ -30,9 +29,7 @@ class EachBookStatusCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => AllBooksInACollection(
-              readingStatus: readingStatus,
-            ),
+            builder: (_) => _navigateToCollections(readingStatus, context),
           ),
         );
         // showDialog(context: context, builder: (_) => const AddComment());
@@ -112,6 +109,31 @@ class EachBookStatusCard extends StatelessWidget {
         return watch.goingToRead;
       case ReadingStatus.isReading:
         return watch.isReading;
+    }
+  }
+
+  Widget _navigateToCollections(
+      ReadingStatus readingStatus, BuildContext context) {
+    var readModel = context.read<HandlingBookshelvesProvider>();
+    List<Book> books = [];
+    switch (readingStatus) {
+      case ReadingStatus.readBefore:
+        books = readModel.isReading;
+        return ExpandableCollection(
+          readingStatus: readingStatus,
+          books: books,
+        );
+      case ReadingStatus.goingToRead:
+        books = readModel.goingToRead;
+        return GoingToReadCollection(
+          books: books,
+        );
+      case ReadingStatus.isReading:
+        books = readModel.isReading;
+        return ExpandableCollection(
+          readingStatus: readingStatus,
+          books: books,
+        );
     }
   }
 }

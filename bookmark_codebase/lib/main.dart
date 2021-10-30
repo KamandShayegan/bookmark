@@ -1,5 +1,4 @@
 import 'package:bookmark_codebase/business_logic/services/providers/google_sign_in_provider.dart';
-import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/main/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';

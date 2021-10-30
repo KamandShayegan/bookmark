@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class BookCover extends StatelessWidget {
   final String image;
   final String name;
-  const BookCover({Key? key, this.image = '', required this.name})
+  const BookCover({Key? key, required this.image, required this.name})
       : super(key: key);
 
   @override

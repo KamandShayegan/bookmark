@@ -1,4 +1,3 @@
-import 'package:bookmark_codebase/components/bottom_nav_bar/page_two.dart';
 import 'package:bookmark_codebase/ui/login/starting_widget.dart';
 import 'package:flutter/material.dart';
 

@@ -34,10 +34,22 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
   List<Book> _goingToRead = [
     Book(),
     Book(),
+    Book(
+        name: 'سه شنبه ها با موری',
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
+    Book(
+        name: 'سه شنبه ها با موری',
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
   ];
 
   List<Book> _readBefore = [
     Book(),
+    Book(
+        name: 'سه شنبه ها با موری',
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
   ];
 
   List<Book> get isReading => _isReading;

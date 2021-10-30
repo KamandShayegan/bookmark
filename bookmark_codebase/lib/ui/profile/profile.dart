@@ -23,9 +23,12 @@ class Profile extends StatelessWidget {
                 const SizedBox(
                   height: 16,
                 ),
-                EachBookStatusCard(readingStatus: ReadingStatus.isReading),
-                EachBookStatusCard(readingStatus: ReadingStatus.goingToRead),
-                EachBookStatusCard(readingStatus: ReadingStatus.readBefore),
+                const EachBookStatusCard(
+                    readingStatus: ReadingStatus.isReading),
+                const EachBookStatusCard(
+                    readingStatus: ReadingStatus.goingToRead),
+                const EachBookStatusCard(
+                    readingStatus: ReadingStatus.readBefore),
               ],
             ),
           ),
