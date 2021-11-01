@@ -6,7 +6,6 @@ import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/size_constants.dart';
 import 'package:bookmark_codebase/utils/methods/angles/rotate_widge_180_degrees.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class BookPreview extends StatelessWidget {
   final Book book;

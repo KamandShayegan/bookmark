@@ -3,7 +3,6 @@ import 'package:bookmark_codebase/utils/methods/angles/rotate_widge_180_degrees.
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
-import 'dart:math' as math;
 
 class ExitButton extends StatelessWidget {
   const ExitButton({Key? key}) : super(key: key);

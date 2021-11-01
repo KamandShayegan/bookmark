@@ -32,13 +32,25 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
   ];
 
   List<Book> _goingToRead = [
-    Book(),
-    Book(),
+    Book(id: '04930493049304903'),
+    Book(id: '42098429380403898038028093849284'),
     Book(
+        id: '3497285729fnskjhfjdfj',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
+        id: 'hskjdbfjbuy8',
+        name: 'سه شنبه ها با موری',
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
+    Book(
+        id: '3497285729fnskjhffffjdfj',
+        name: 'سه شنبه ها با موری',
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
+    Book(
+        id: '3497285729fnskj2222hfjdfj',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
@@ -76,6 +88,13 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
   }
 
   Future removeBook(ReadingStatus readingStatus, String bookId) async {
+    if (readingStatus == ReadingStatus.isReading) {
+      _isReading.removeWhere((e) => e.id == bookId);
+    } else if (readingStatus == ReadingStatus.goingToRead) {
+      _goingToRead.removeWhere((e) => e.id == bookId);
+    } else if (readingStatus == ReadingStatus.readBefore) {
+      _readBefore.removeWhere((e) => e.id == bookId);
+    }
     //based on reading status, first we remove the book locally and then let the database know that the book is removed. (or reversed order)
     notifyListeners();
   }

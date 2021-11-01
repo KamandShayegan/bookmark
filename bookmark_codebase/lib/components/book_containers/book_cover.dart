@@ -15,7 +15,7 @@ class BookCover extends StatelessWidget {
         child: Container(
           height: size.height * 0.1,
           // height: 40,s
-          // width: size.width * 0.14,
+          width: size.width * 0.14,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(4),
             border: Border.all(color: MyColors.blue),
