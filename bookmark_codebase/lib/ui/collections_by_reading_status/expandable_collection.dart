@@ -34,26 +34,16 @@ class ExpandableCollection extends StatelessWidget {
         ),
         body: Container(
           margin: const EdgeInsets.symmetric(horizontal: 16),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const SizedBox(
-                  height: 24,
-                ),
-                ...books.map(
-                  (e) {
-                    return ExpansionWidget(
-                      readingStatus: readingStatus,
-                      expansionHeader: ExpansionPanelHeader(book: e),
-                      expansionBody:
-                          const Text('اطلاعات بیشتری هنوز در دسترس نیست.'),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ),
+          child: ListView.builder(
+              itemCount: books.length,
+              itemBuilder: (context, index){
+            return ExpansionWidget(
+              readingStatus: readingStatus,
+              expansionHeader: ExpansionPanelHeader(book: books[index], readingStatus: readingStatus,),
+              expansionBody:
+              const Text('اطلاعات بیشتری هنوز در دسترس نیست.'), index: index,
+            );
+          }),
         ),
       ),
     );

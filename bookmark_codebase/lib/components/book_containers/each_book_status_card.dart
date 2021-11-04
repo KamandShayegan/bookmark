@@ -82,6 +82,7 @@ class EachBookStatusCard extends StatelessWidget {
                   // color: setColorByReadingStatus(readingStatus),
                 ),
                 child: BooksRow(
+                  readingStatus : readingStatus,
                   books: books,
                 ),
               ),
@@ -118,7 +119,7 @@ class EachBookStatusCard extends StatelessWidget {
     List<Book> books = [];
     switch (readingStatus) {
       case ReadingStatus.readBefore:
-        books = readModel.isReading;
+        books = readModel.readBefore;
         return ExpandableCollection(
           readingStatus: readingStatus,
           books: books,

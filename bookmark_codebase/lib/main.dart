@@ -70,7 +70,7 @@ class MyApp extends StatelessWidget {
               ),
               overline: TextStyle(
                 fontWeight: FontWeight.w400,
-                fontSize: 10,
+                fontSize: 8,
               ),
               headline3: TextStyle(
                   fontWeight: FontWeight.w800,

@@ -1,39 +1,23 @@
+ import 'package:bookmark_codebase/components/progress_indicators/circular/custom_circular_progress_indicator.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
+import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
+import 'package:bookmark_codebase/utils/methods/set_by_reading_status/set_color_by_reading_status.dart';
 import 'package:flutter/material.dart';
 
 class BookCover extends StatelessWidget {
   final String image;
   final String name;
-  const BookCover({Key? key, required this.image, required this.name})
-      : super(key: key);
+  final ReadingStatus readingStatus;
+
+
+  const BookCover({
+    Key? key,
+    required this.image,
+    required this.name, this.readingStatus= ReadingStatus.goingToRead,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Widget _makeBookCover(String name, BuildContext context) {
-      var size = MediaQuery.of(context).size;
-      return Center(
-        child: Container(
-          height: size.height * 0.1,
-          // height: 40,s
-          width: size.width * 0.14,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(4),
-            border: Border.all(color: MyColors.blue),
-          ),
-          child: Center(
-            child: Text(
-              name,
-              overflow: TextOverflow.ellipsis,
-              style: Theme.of(context)
-                  .textTheme
-                  .overline!
-                  .apply(color: MyColors.blue),
-            ),
-          ),
-        ),
-      );
-    }
-
     return image == ''
         ? _makeBookCover('بدون عکس', context)
         : SizedBox(
@@ -47,10 +31,44 @@ class BookCover extends StatelessWidget {
               child: Image.network(
                 image,
                 fit: BoxFit.contain,
-                errorBuilder: (context, obj, stcktrce) => Text('هکس پیدا نشد',
+                loadingBuilder: (context, widget, _) => Center(
+                  child: SizedBox(
+                    height: 8,
+                    width: 8,
+                    child: CircularProgressIndicator(
+                      color: setColorByReadingStatus(readingStatus).withOpacity(0.3),
+                    ),
+                  ),
+                ),
+                errorBuilder: (context, obj, _) => Text('عکس پیدا نشد',
                     style: Theme.of(context).textTheme.subtitle2),
               ),
             ),
           );
+  }
+
+  Widget _makeBookCover(String name, BuildContext context) {
+    var size = MediaQuery.of(context).size;
+    return Center(
+      child: Container(
+        height: size.height * 0.1,
+        // height: 40,s
+        width: size.width * 0.12,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(4),
+          border: Border.all(color: MyColors.blue),
+        ),
+        child: Center(
+          child: Text(
+            name,
+            overflow: TextOverflow.ellipsis,
+            style: Theme.of(context)
+                .textTheme
+                .overline!
+                .apply(color: MyColors.blue),
+          ),
+        ),
+      ),
+    );
   }
 }

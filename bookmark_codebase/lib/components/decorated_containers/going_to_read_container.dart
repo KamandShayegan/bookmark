@@ -2,6 +2,7 @@ import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/components/book_containers/book_cover.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
+import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:flutter/material.dart';
 
 class GoingToReadContainer extends StatelessWidget {
@@ -27,6 +28,7 @@ class GoingToReadContainer extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             BookCover(
+              readingStatus: ReadingStatus.goingToRead,
               name: book.name,
               image: book.image,
             ),

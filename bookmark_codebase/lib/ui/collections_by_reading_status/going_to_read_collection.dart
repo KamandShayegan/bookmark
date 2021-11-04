@@ -2,6 +2,7 @@ import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 import 'package:bookmark_codebase/components/decorated_containers/going_to_read_container.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
+import 'package:bookmark_codebase/components/dismissible/custom_dismissible.dart';
 import 'package:bookmark_codebase/components/dismissible/dismissible_background.dart';
 import 'package:bookmark_codebase/components/pop_ups/before_deletion_assurance.dart';
 import 'package:bookmark_codebase/components/progress_indicators/circular/custom_circular_progress_indicator.dart';
@@ -14,6 +15,7 @@ import 'package:provider/provider.dart';
 
 class GoingToReadCollection extends StatefulWidget {
   final List<Book> books;
+
   const GoingToReadCollection({Key? key, required this.books})
       : super(key: key);
 
@@ -23,6 +25,7 @@ class GoingToReadCollection extends StatefulWidget {
 
 class _GoingToReadCollectionState extends State<GoingToReadCollection> {
   bool load = false;
+
   @override
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
@@ -58,7 +61,7 @@ class _GoingToReadCollectionState extends State<GoingToReadCollection> {
                 height: 24,
               ),
               load
-                  ? CustomCircularProgressIndicator(
+                  ? CustomCircularProgressIndicatorWithText(
                       readingStatus: readingStatus,
                       leadingText: StringConstants.startBook,
                     )
@@ -66,21 +69,9 @@ class _GoingToReadCollectionState extends State<GoingToReadCollection> {
                       child: ListView.builder(
                         itemCount: rModel.goingToRead.length,
                         itemBuilder: (builder, i) {
-                          return Dismissible(
-                            direction: DismissDirection.endToStart,
-                            background: DismissibleBackground(
-                                readingStatus: readingStatus),
-                            confirmDismiss: (_) async {
-                              return await showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return BeforeDeletionAssurance(
-                                      readingStatus: readingStatus, index: i);
-                                },
-                              );
-                            },
-                            key: UniqueKey(),
-                            // onDismissed: (_) => _onDismissed(i),
+                          return CustomDismissible(
+                            readingStatus: readingStatus,
+                            index: i,
                             child: GoingToReadContainer(
                               onTap: () async {
                                 setState(() {
