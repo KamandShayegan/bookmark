@@ -1,7 +1,10 @@
+import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
+import 'package:bookmark_codebase/business_logic/services/providers/search_book/search_book_provider.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 class SearchBookTextFormField extends StatelessWidget {
   final TextEditingController controller;
@@ -12,6 +15,7 @@ class SearchBookTextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return TextFormField(
+      onChanged: (value)=>_checkLengthAndSendRequest(value, context),
       style: Theme.of(context).textTheme.headline3!.apply(color: MyColors.blue),
       autofocus: true,
       cursorColor: MyColors.blue,
@@ -31,5 +35,11 @@ class SearchBookTextFormField extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _checkLengthAndSendRequest(String value, BuildContext context) async{
+    if(value.length>3){
+      await context.read<SearchBookProvider>().searchBook(value);
+    }
   }
 }
