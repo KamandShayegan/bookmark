@@ -5,27 +5,37 @@ import 'package:flutter/material.dart';
 class HandlingBookshelvesProvider extends ChangeNotifier {
   List<Book> _isReading = [
     Book(
-        name: 'سه شنبه ها با موری',
-        image:
-            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
-    Book(pageCount: 40, name: 'سه شنبه ها با موری', image: ''),
-    Book(
+        id: 'faadss',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
+        pageCount: 40,
+        name: 'سه شنبه ها با موری',
+        image: '',
+        id: 'ffdfdfdfdfdfdfdllalallllalalala'),
+    Book(
+        id: 'ffdfdfdfdfdfdfdllalallllalalal33333a',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
+        id: 'ffdfdf21212dfdfdfdfdllalallllalalala',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
+        id: '1234',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
+        id: '345',
+        name: 'سه شنبه ها با موری',
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
+    Book(
+        id: '20192',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
@@ -57,8 +67,18 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
   ];
 
   List<Book> _readBefore = [
-    Book(),
     Book(
+        id: '34972222222285729fnskj2222hfjdfj',
+        name: 'سه شنبه ها با موری',
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
+    Book(
+        id: '3497285729fnskj2222hmfmfmfmmfffjdfj',
+        name: 'سه شنبه ها با موری',
+        image:
+            'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
+    Book(
+        id: '3497285729fnskj2222hfjdlalalalallalalallallllllllllfj',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
@@ -87,15 +107,21 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future removeBook(ReadingStatus readingStatus, String bookId) async {
+  Future removeBook(ReadingStatus readingStatus, int i) async {
     if (readingStatus == ReadingStatus.isReading) {
-      _isReading.removeWhere((e) => e.id == bookId);
+      _isReading.removeAt(i);
     } else if (readingStatus == ReadingStatus.goingToRead) {
-      _goingToRead.removeWhere((e) => e.id == bookId);
+      _goingToRead.removeAt(i);
     } else if (readingStatus == ReadingStatus.readBefore) {
-      _readBefore.removeWhere((e) => e.id == bookId);
+      _readBefore.removeAt(i);
     }
     //based on reading status, first we remove the book locally and then let the database know that the book is removed. (or reversed order)
+    notifyListeners();
+  }
+
+  Future startReading(Book book) async {
+    _goingToRead.removeWhere((e) => e.id == book.id);
+    _isReading.add(book);
     notifyListeners();
   }
 }

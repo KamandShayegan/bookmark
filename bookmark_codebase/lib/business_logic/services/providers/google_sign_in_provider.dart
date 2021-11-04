@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class GoogleSignInProvider extends ChangeNotifier {
@@ -26,7 +27,12 @@ class GoogleSignInProvider extends ChangeNotifier {
   }
 
   Future<void> signOutFromGoogle() async {
-    await _googleSignIn.disconnect();
+    try {
+      await _googleSignIn.disconnect();
+    } on PlatformException {
+      rethrow;
+    }
+
     await _auth.signOut();
     await _googleSignIn.signOut();
     notifyListeners();

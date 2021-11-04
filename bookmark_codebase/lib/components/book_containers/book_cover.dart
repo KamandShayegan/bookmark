@@ -47,8 +47,8 @@ class BookCover extends StatelessWidget {
               child: Image.network(
                 image,
                 fit: BoxFit.contain,
-                errorBuilder: (context, obj, stcktrce) =>
-                    const Text('هکس پیدا نشد'),
+                errorBuilder: (context, obj, stcktrce) => Text('هکس پیدا نشد',
+                    style: Theme.of(context).textTheme.subtitle2),
               ),
             ),
           );

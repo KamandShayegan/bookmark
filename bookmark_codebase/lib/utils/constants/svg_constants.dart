@@ -9,6 +9,7 @@ class SvgPaths {
   static const String bookmark = 'assets/svg/bookmark.svg';
   static const String comment = 'assets/svg/comment.svg';
   static const String search = 'assets/svg/search.svg';
+  static const String trash = 'assets/svg/trash.svg';
 }
 
 class NavBarIcon {
