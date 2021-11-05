@@ -5,10 +5,15 @@ class HttpRequests{
   static String baseUrl = 'https://taaghche.com/_next/data/Uai8bKdKcyuJlvlT-SAZf/';
 
 
-  Future<Response> getWithQueryParameters(Map<String, dynamic> queryParameters, String endPoint) async{
+  Future<Response> getRequest(String endPoint) async{
     String url = "$baseUrl$endPoint";
     print('<GET> $url ');
-    return await DioService().dio.get(url, queryParameters: queryParameters);
+    return await DioService().dio.get(url,  options: Options(
+      followRedirects: false,
+      validateStatus: (status) {
+        return status! < 500;
+      },
+    ),);
   }
 
 }

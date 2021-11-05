@@ -1,6 +1,7 @@
-enum HttpStatusEnum{
+enum HttpStatusEnum {
   idle,
   waiting,
-  done,
+  found,
+  notFound,
   error,
 }

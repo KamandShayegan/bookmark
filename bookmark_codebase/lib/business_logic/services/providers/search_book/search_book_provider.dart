@@ -4,39 +4,69 @@ import 'package:bookmark_codebase/utils/enums/http_status_enums.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
-class SearchBookProvider extends ChangeNotifier{
+class SearchBookProvider extends ChangeNotifier {
 
-  List<Box> _boxes =[];
+  bool _hasBookList = false;
 
-  List<Box> get boxes=> _boxes;
+  bool get hasBookList => _hasBookList;
 
-  setBoxValue(List<Box> boxes){
+  setHasBookLists(bool value){
+    _hasBookList = value;
+    notifyListeners();
+  }
+
+  List<Box> _boxes = [];
+
+  List<Box> get boxes => _boxes;
+
+  setBoxValue(List<Box> boxes) {
     _boxes = boxes;
     notifyListeners();
   }
 
-  HttpStatusEnum _fetchingStatus= HttpStatusEnum.idle;
+  List<Book> _bookList = [];
+
+  List<Book> get bookList => _bookList;
+
+  setBookListValue(List<Book> books) {
+    _bookList = bookList;
+    notifyListeners();
+  }
+
+  HttpStatusEnum _fetchingStatus = HttpStatusEnum.idle;
 
   HttpStatusEnum get fetchingStatus => _fetchingStatus;
 
-  setFetchingStatus(HttpStatusEnum stat){
+  setFetchingStatus(HttpStatusEnum stat) {
     _fetchingStatus = stat;
     notifyListeners();
   }
 
-  Future searchBook(String word) async{
+  Future searchBook(String word) async {
     word = word.replaceAll(' ', '+');
     print('search book:  $word');
-    try{
+    try {
       setFetchingStatus(HttpStatusEnum.waiting);
-      Response response = await HttpRequests().getWithQueryParameters({'term':word}, "search.json");
+      Response response =
+          await HttpRequests().getRequest("search.json?term=$word");
+      print(response.data);
       SearchResult searchResult = SearchResult.fromJson(response.data);
-      setFetchingStatus(HttpStatusEnum.done);
-      setBoxValue(searchResult.pageProps!.pageConfig!.boxes??[]);
-    } on DioError{
+      if (searchResult.pageProps!.pageConfig!.boxes.isNotEmpty) {
+        setHasBookLists(false);
+        setBoxValue(searchResult.pageProps!.pageConfig!.boxes);
+        setFetchingStatus(HttpStatusEnum.found);
+        return response;
+      } else if(searchResult.pageProps!.pageConfig!.bookList==null) {
+        setHasBookLists(true);
+        setBookListValue(searchResult.pageProps!.pageConfig!.bookList!.books);
+        setFetchingStatus(HttpStatusEnum.found);
+        return response;
+      }else{
+        setFetchingStatus(HttpStatusEnum.notFound);
+    }
+    } on DioError {
       setFetchingStatus(HttpStatusEnum.error);
       rethrow;
     }
   }
-
 }
