@@ -1,6 +1,8 @@
-import 'package:bookmark_codebase/business_logic/models/json_2_dart/search_result.dart';
+import 'package:bookmark_codebase/business_logic/models/json_2_dart/search_result.dart'
+    as searched;
 import 'package:bookmark_codebase/business_logic/services/providers/search_book/search_book_provider.dart';
 import 'package:bookmark_codebase/components/book_containers/book_cover.dart';
+import 'package:bookmark_codebase/components/book_containers/each_searched_book.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/components/progress_indicators/circular/custom_circular_progress_indicator.dart';
 import 'package:bookmark_codebase/components/rating/read_only_rating_bar.dart';
@@ -9,11 +11,26 @@ import 'package:bookmark_codebase/utils/constants/size_constants.dart';
 import 'package:bookmark_codebase/utils/enums/http_status_enums.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 
-class Page2 extends StatelessWidget {
+class Page2 extends StatefulWidget {
   Page2({Key? key}) : super(key: key);
 
+  @override
+  State<Page2> createState() => _Page2State();
+}
+
+class _Page2State extends State<Page2> {
   final TextEditingController _controller = TextEditingController();
+
+  @override
+  void initState() {
+    var rModel = context.read<SearchBookProvider>();
+    if (rModel.boxes.isEmpty && rModel.bookList.isEmpty) {
+      rModel.setInitStatus();
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +49,21 @@ class Page2 extends StatelessWidget {
                 const SizedBox(
                   height: 32,
                 ),
-                stat == HttpStatusEnum.waiting
-                    ? const CustomCircularProgressIndicatorWithText()
-                    : stat == HttpStatusEnum.notFound
-                        ? const Text('کتابی پیدا نشد!')
-                        : stat == HttpStatusEnum.error
-                            ? const Text(
-                                'به دلیل نامشخصی نتونستیم کتابارو برات بیاریم.')
-                            : SearchResultWidget(
-                                boxes: wModel.boxes,
-                                bookList: wModel.bookList,
-                              ),
+                stat == HttpStatusEnum.idle
+                    ? const SizedBox()
+                    : stat == HttpStatusEnum.waiting
+                        ? const CustomCircularProgressIndicatorWithText()
+                        : stat == HttpStatusEnum.notFound
+                            ? const Text('کتابی پیدا نشد!')
+                            : stat == HttpStatusEnum.error
+                                ? const Text(
+                                    'به دلیل نامشخصی نتونستیم کتابارو برات بیاریم.')
+                                : stat == HttpStatusEnum.found
+                                    ? SearchResultWidget(
+                                        boxes: wModel.boxes,
+                                        bookList: wModel.bookList,
+                                      )
+                                    : const SizedBox(),
               ],
             ),
           ),
@@ -53,8 +74,8 @@ class Page2 extends StatelessWidget {
 }
 
 class SearchResultWidget extends StatelessWidget {
-  final List<Box> boxes;
-  final List<Book> bookList;
+  final List<searched.Box> boxes;
+  final List<searched.Book> bookList;
 
   const SearchResultWidget(
       {Key? key, required this.boxes, required this.bookList})
@@ -63,68 +84,96 @@ class SearchResultWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool hasBookList = context.watch<SearchBookProvider>().hasBookList;
-    print('search found');
-    print(boxes);
     return Expanded(
       child: SingleChildScrollView(
         child: Column(
-            children: hasBookList
-                ? bookList.map((book) {
-                    return Column(
-                      children: [
-                        Text(book.title ?? 'بدون تایتل'),
-                        Text(book.subtitle ?? 'بدون سابتایتل'),
-                        ReadOnlyRatingBar(
-                          rating: (book.rating ?? 0).toDouble(),
-                        ),
-                      ],
-                    );
-                  }).toList()
-                : boxes
-                    .map(
-                      (e) => Container(
-                        margin: EdgeInsets.only(bottom: 16),
-                        // height: 300,
-                        width: double.infinity,
-                        child: Column(
-                          children: [
-                            Text(
-                              e.title ?? 'بدون تایتل',
-                              style: Theme.of(context).textTheme.headline1,
-                            ),
-                            ...e.bookData!.books!
-                                .map(
-                                  (book) => Container(
-                                    margin: EdgeInsets.all(8),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4),
-                                        border: Border.all(color: Colors.grey)),
-                                    child: Row(
-                                      children: [
-                                        BookCover(
-                                            image: book.coverUri ?? '',
-                                            name: book.title ?? 'بدون title'),
-                                        SizedBox(
-                                          width: 8,
-                                        ),
-                                        Column(
-                                          children: [
-                                            Text(book.title ?? 'بدون title'),
-                                            Text(book.subtitle ??
-                                                'بدون subtitle '),
-                                          ],
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                )
-                                .toList()
-                          ],
-                        ),
-                      ),
-                    )
-                    .toList()),
+          children: [
+            BoxWidget(boxes: boxes),
+            BookListWidget(bookList: bookList),
+          ],
+        ),
       ),
+    );
+  }
+}
+
+class BookListWidget extends StatelessWidget {
+  final List<searched.Book> bookList;
+
+  const BookListWidget({Key? key, required this.bookList}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    print("bookList: $bookList");
+    return Wrap(
+      children: [
+        ...bookList.map((book) {
+          Book res = Book(
+            name: book.title ?? 'بدون نام',
+            author:
+                "${book.authors![0].firstName!} ${book.authors![0].lastName!}",
+            rate: book.rating!.toDouble(),
+            image: book.coverUri!,
+            id: book.id!.toString(),
+            preview: 'بدون',
+            comments: [],
+          );
+          return EachSearchedBook(book: res);
+        }).toList()
+      ],
+    );
+  }
+}
+
+class BoxWidget extends StatelessWidget {
+  final List<searched.Box> boxes;
+
+  const BoxWidget({Key? key, required this.boxes}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    print("boxes: $boxes");
+
+    return Wrap(
+      children: [
+        ...boxes.map(
+          (e) {
+            return Container(
+              margin: EdgeInsets.only(bottom: 32),
+              // height: 300,
+              width: double.infinity,
+              child: Column(
+                children: [
+                  Text(
+                    e.title ?? 'بدون تایتل',
+                    style: Theme.of(context).textTheme.headline1,
+                  ),
+                  SizedBox(height: 16,),
+                  Wrap(
+                    children: [
+                      ...e.bookData!.books!.map(
+                        (book) {
+                          Book res = Book(
+                            name: book.title ?? 'بدون نام',
+                            author:
+                                "${book.authors![0].firstName!} ${book.authors![0].lastName!}",
+                            rate: book.rating!.toDouble(),
+                            image: book.coverUri!,
+                            id: book.id!.toString(),
+                            preview: 'بدون',
+                            comments: [],
+                          );
+                          return EachSearchedBook(book: res);
+                        },
+                      ).toList()
+                    ],
+                  ),
+                ],
+              ),
+            );
+          },
+        ).toList()
+      ],
     );
   }
 }

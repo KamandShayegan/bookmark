@@ -5,12 +5,11 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
 class SearchBookProvider extends ChangeNotifier {
-
   bool _hasBookList = false;
 
   bool get hasBookList => _hasBookList;
 
-  setHasBookLists(bool value){
+  setHasBookLists(bool value) {
     _hasBookList = value;
     notifyListeners();
   }
@@ -20,7 +19,7 @@ class SearchBookProvider extends ChangeNotifier {
   List<Box> get boxes => _boxes;
 
   setBoxValue(List<Box> boxes) {
-    _boxes = boxes;
+    _boxes.addAll(boxes);
     notifyListeners();
   }
 
@@ -29,7 +28,7 @@ class SearchBookProvider extends ChangeNotifier {
   List<Book> get bookList => _bookList;
 
   setBookListValue(List<Book> books) {
-    _bookList = bookList;
+    _bookList.addAll(books);
     notifyListeners();
   }
 
@@ -42,28 +41,46 @@ class SearchBookProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  setInitStatus(){
+    _fetchingStatus = HttpStatusEnum.idle;
+  }
+
   Future searchBook(String word) async {
+    List<Book> resultList = [];
     word = word.replaceAll(' ', '+');
-    print('search book:  $word');
+    print('searched book:  $word');
     try {
       setFetchingStatus(HttpStatusEnum.waiting);
       Response response =
-          await HttpRequests().getRequest("search.json?term=$word");
-      print(response.data);
+      await HttpRequests().getRequest("search.json?term=$word");
+      // print("response: \n\n ${response.data} \n\n");
       SearchResult searchResult = SearchResult.fromJson(response.data);
-      if (searchResult.pageProps!.pageConfig!.boxes.isNotEmpty) {
-        setHasBookLists(false);
+      if (searchResult.pageProps!.pageConfig!.bookList!.books.isNotEmpty &&
+          searchResult.pageProps!.pageConfig!.boxes.isNotEmpty) {
+        print('both exist');
+        print("bookliiiiist: ${searchResult.pageProps!.pageConfig!.bookList!.books}");
+        setHasBookLists(true);
+        setBookListValue(searchResult.pageProps!.pageConfig!.bookList!.books);
         setBoxValue(searchResult.pageProps!.pageConfig!.boxes);
         setFetchingStatus(HttpStatusEnum.found);
-        return response;
-      } else if(searchResult.pageProps!.pageConfig!.bookList==null) {
+      } else
+      if (searchResult.pageProps!.pageConfig!.bookList!.books.isNotEmpty &&
+          searchResult.pageProps!.pageConfig!.boxes.isEmpty) {
+        print('only book list');
         setHasBookLists(true);
         setBookListValue(searchResult.pageProps!.pageConfig!.bookList!.books);
         setFetchingStatus(HttpStatusEnum.found);
-        return response;
-      }else{
+      }
+      else if (searchResult.pageProps!.pageConfig!.bookList!.books.isEmpty &&
+          searchResult.pageProps!.pageConfig!.boxes.isNotEmpty){
+        print('only box');
+        setHasBookLists(false);
+        setBoxValue(searchResult.pageProps!.pageConfig!.boxes);
+        setFetchingStatus(HttpStatusEnum.found);
+      }
+      else if (_bookList.isEmpty && _boxes.isEmpty) {
         setFetchingStatus(HttpStatusEnum.notFound);
-    }
+      }
     } on DioError {
       setFetchingStatus(HttpStatusEnum.error);
       rethrow;
