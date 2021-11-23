@@ -1,4 +1,5 @@
 import 'package:bookmark_codebase/business_logic/services/providers/google_sign_in_provider.dart';
+import 'package:bookmark_codebase/business_logic/services/providers/search_book/search_book_provider.dart';
 import 'package:bookmark_codebase/utils/main/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -24,6 +25,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (context) => HandlingBookshelvesProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => SearchBookProvider(),
         ),
       ],
       child: MaterialApp(

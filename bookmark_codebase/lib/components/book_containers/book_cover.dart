@@ -31,15 +31,15 @@ class BookCover extends StatelessWidget {
               child: Image.network(
                 image,
                 fit: BoxFit.contain,
-                loadingBuilder: (context, widget, _) => Center(
-                  child: SizedBox(
-                    height: 8,
-                    width: 8,
-                    child: CircularProgressIndicator(
-                      color: setColorByReadingStatus(readingStatus).withOpacity(0.3),
-                    ),
-                  ),
-                ),
+                // loadingBuilder: (context, widget, _) => Center(
+                //   child: SizedBox(
+                //     height: 8,
+                //     width: 8,
+                //     child: CircularProgressIndicator(
+                //       color: setColorByReadingStatus(readingStatus).withOpacity(0.3),
+                //     ),
+                //   ),
+                // ),
                 errorBuilder: (context, obj, _) => Text('عکس پیدا نشد',
                     style: Theme.of(context).textTheme.subtitle2),
               ),

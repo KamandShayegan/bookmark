@@ -6,11 +6,13 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class ReadOnlyRatingBar extends StatelessWidget {
   final double rating;
+
   const ReadOnlyRatingBar({Key? key, required this.rating}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return RatingBarIndicator(
+      unratedColor: Colors.grey.withOpacity(0.4),
       rating: rating,
       itemBuilder: (context, index) => const Icon(
         Icons.star,

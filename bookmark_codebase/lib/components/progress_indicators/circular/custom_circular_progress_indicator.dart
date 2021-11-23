@@ -6,7 +6,7 @@ class CustomCircularProgressIndicatorWithText extends StatelessWidget {
   final ReadingStatus readingStatus;
   final String leadingText;
   const CustomCircularProgressIndicatorWithText(
-      {Key? key, required this.readingStatus, this.leadingText = ''})
+      {Key? key, this.readingStatus = ReadingStatus.goingToRead, this.leadingText = ''})
       : super(key: key);
 
   @override
