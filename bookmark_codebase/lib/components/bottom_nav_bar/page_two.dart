@@ -60,7 +60,10 @@ class _Page2State extends State<Page2> {
                                     'به دلیل نامشخصی نتونستیم کتابارو برات بیاریم.')
                                 : stat == HttpStatusEnum.found
                                     ? SearchResultWidget(
-                                        boxes: wModel.boxes,
+                                        boxes: wModel.getWithoutBookListBoxValue
+                                                .isEmpty
+                                            ? wModel.boxes
+                                            : wModel.getWithoutBookListBoxValue,
                                         bookList: wModel.bookList,
                                       )
                                     : const SizedBox(),
@@ -74,7 +77,7 @@ class _Page2State extends State<Page2> {
 }
 
 class SearchResultWidget extends StatelessWidget {
-  final List<searched.Box> boxes;
+  final List<dynamic> boxes;
   final List<searched.Book> bookList;
 
   const SearchResultWidget(
@@ -104,13 +107,13 @@ class BookListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("bookList: $bookList");
+    // print("bookList: $bookList");
     return Wrap(
       children: [
         ...bookList.map((book) {
           Book res = Book(
             name: book.title ?? 'بدون نام',
-            author:
+            author:book.authors!.isEmpty?'بدون نویسنده':
                 "${book.authors![0].firstName!} ${book.authors![0].lastName!}",
             rate: book.rating!.toDouble(),
             image: book.coverUri!,
@@ -126,20 +129,20 @@ class BookListWidget extends StatelessWidget {
 }
 
 class BoxWidget extends StatelessWidget {
-  final List<searched.Box> boxes;
+  final List<dynamic> boxes;
 
   const BoxWidget({Key? key, required this.boxes}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    print("boxes: $boxes");
+    // print("boxes: $boxes");
 
     return Wrap(
       children: [
         ...boxes.map(
           (e) {
             return Container(
-              margin: EdgeInsets.only(bottom: 32),
+              margin: const EdgeInsets.only(bottom: 32),
               // height: 300,
               width: double.infinity,
               child: Column(
@@ -148,14 +151,16 @@ class BoxWidget extends StatelessWidget {
                     e.title ?? 'بدون تایتل',
                     style: Theme.of(context).textTheme.headline1,
                   ),
-                  SizedBox(height: 16,),
+                  const SizedBox(
+                    height: 16,
+                  ),
                   Wrap(
                     children: [
                       ...e.bookData!.books!.map(
                         (book) {
                           Book res = Book(
                             name: book.title ?? 'بدون نام',
-                            author:
+                            author: book.authors!.isEmpty?'بدون نویسنده':
                                 "${book.authors![0].firstName!} ${book.authors![0].lastName!}",
                             rate: book.rating!.toDouble(),
                             image: book.coverUri!,
