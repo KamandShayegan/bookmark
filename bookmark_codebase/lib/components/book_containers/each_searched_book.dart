@@ -13,7 +13,7 @@ class EachSearchedBook extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     return InkWell(
       onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_)=>BookPreview(book: book),));
+        Navigator.push(context, MaterialPageRoute(builder: (_)=>Preview(book: book),));
       },
       child: Container(
           decoration: BoxDecoration(

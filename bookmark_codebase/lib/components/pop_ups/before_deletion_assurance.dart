@@ -42,12 +42,16 @@ class BeforeDeletionAssurance extends StatelessWidget {
               _deleteBook(index);
               Navigator.of(context).pop(true);
             },
-            title: 'آره',
+            title: Text(
+              'آره',
+              style: Theme.of(context).textTheme.caption!.apply(color: Colors.black),),
             defaultColor: Colors.white,
             tappedColor: MyColors.blue,
           ),
           SmallButton(
-            title: 'نه',
+            title: Text(
+          'نه',
+          style: Theme.of(context).textTheme.caption!.apply(color: Colors.black),),
             onTap: () => Navigator.of(context).pop(false),
             defaultColor: MyColors.blue.withOpacity(0.3),
             tappedColor: MyColors.blue,

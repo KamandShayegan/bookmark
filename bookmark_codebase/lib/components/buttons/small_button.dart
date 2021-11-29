@@ -2,7 +2,7 @@ import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 
 class SmallButton extends StatelessWidget {
-  final String title;
+  final Widget title;
   final VoidCallback onTap;
   final Color defaultColor;
   final Color tappedColor;
@@ -30,16 +30,21 @@ class SmallButton extends StatelessWidget {
       return defaultColor;
     }
 
+    double getElevation(Set<MaterialState> states){
+      if(states.contains(MaterialState.pressed)){
+        return 3;
+      }else{
+        return 1;
+      }
+    }
+
     return TextButton(
       style: ButtonStyle(
         backgroundColor: MaterialStateProperty.resolveWith(getColor),
         overlayColor: MaterialStateProperty.resolveWith(getColor),
       ),
       onPressed: onTap,
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.caption!.apply(color: Colors.black),
-      ),
+      child: title,
     );
   }
 }

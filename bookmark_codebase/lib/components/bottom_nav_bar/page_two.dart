@@ -9,6 +9,7 @@ import 'package:bookmark_codebase/components/rating/read_only_rating_bar.dart';
 import 'package:bookmark_codebase/components/user_inputs/text_form_fields/searching/search_book.dart';
 import 'package:bookmark_codebase/utils/constants/size_constants.dart';
 import 'package:bookmark_codebase/utils/enums/http_status_enums.dart';
+import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
@@ -52,7 +53,7 @@ class _Page2State extends State<Page2> {
                 stat == HttpStatusEnum.idle
                     ? const SizedBox()
                     : stat == HttpStatusEnum.waiting
-                        ? const CustomCircularProgressIndicatorWithText()
+                        ? const CustomCircularProgressIndicatorWithText(readingStatus: ReadingStatus.goingToRead,)
                         : stat == HttpStatusEnum.notFound
                             ? const Text('کتابی پیدا نشد!')
                             : stat == HttpStatusEnum.error
@@ -118,7 +119,7 @@ class BookListWidget extends StatelessWidget {
             rate: book.rating!.toDouble(),
             image: book.coverUri!,
             id: book.id!.toString(),
-            preview: 'بدون',
+            preview: 'بدووون',
             comments: [],
           );
           return EachSearchedBook(book: res);
