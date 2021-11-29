@@ -34,7 +34,11 @@ class CommentsTextFormField extends StatelessWidget {
         // const SizedBox(height: 24,),
         const Spacer(),
         SmallButton(
-          title: 'ارسال',
+          title: Text(
+            'ارسال',
+            style:
+                Theme.of(context).textTheme.caption!.apply(color: Colors.white),
+          ),
           onTap: () {},
         )
       ],

@@ -15,7 +15,7 @@ class EachBook extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => BookPreview(
+        builder: (_) => Preview(
           book: book,
         ),
       ),

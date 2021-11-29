@@ -2,9 +2,7 @@ import 'package:bookmark_codebase/business_logic/services/http_services/dio_serv
 import 'package:dio/dio.dart';
 
 class HttpRequests{
-  static String baseUrl = 'https://taaghche.com/_next/data/Aq8YvTDyoFHfIGPrf0bPP/';
-
-
+  static String baseUrl = 'https://taaghche.com/_next/data/CiaCeUpURWSzM8Dz6LXfK/';
 
   Future<Response> getRequest(String endPoint) async{
     String url = "$baseUrl$endPoint";

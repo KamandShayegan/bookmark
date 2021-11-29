@@ -2,6 +2,7 @@ import 'package:bookmark_codebase/business_logic/models/json_2_dart/search_resul
     as wBookList;
 import 'package:bookmark_codebase/business_logic/models/json_2_dart/search_result_without_booklist.dart'
     as woBookList;
+import 'package:bookmark_codebase/business_logic/models/json_2_dart/search_result_without_booklist.dart';
 import 'package:bookmark_codebase/business_logic/services/http_services/requests.dart';
 import 'package:bookmark_codebase/utils/enums/http_status_enums.dart';
 import 'package:dio/dio.dart';
@@ -76,7 +77,6 @@ class SearchBookProvider extends ChangeNotifier {
           response.data['pageProps']["pageConfig"]["bookList"] == null) {
         //not found
         print('not found');
-
         setFetchingStatus(HttpStatusEnum.notFound);
       }
       if (response.data['pageProps']["pageConfig"]["bookList"] != null) {
@@ -84,8 +84,12 @@ class SearchBookProvider extends ChangeNotifier {
         print('has booklist');
         wBookList.SearchResult searchResult =
             wBookList.SearchResult.fromJson(response.data);
+        List<wBookList.Book> books = searchResult.pageProps!.pageConfig!.bookList!.books;
+        books.removeWhere((book) => book.type=="Audio");
         setBookListValue(searchResult.pageProps!.pageConfig!.bookList!.books);
-        setBoxValue(searchResult.pageProps!.pageConfig!.boxes);
+        List<wBookList.Box> boxes = searchResult.pageProps!.pageConfig!.boxes;
+        boxes.removeWhere((box) => box.title=='کتاب‌های صوتی');
+        setBoxValue(boxes);
         setFetchingStatus(HttpStatusEnum.found);
 
       } else {
@@ -93,7 +97,9 @@ class SearchBookProvider extends ChangeNotifier {
         print('no booklist');
         woBookList.SearchResultWithoutBookList searchResultWithoutBookList =
             woBookList.SearchResultWithoutBookList.fromJson(response.data);
-        setWithoutBookListBoxValue(searchResultWithoutBookList.pageProps!.pageConfig!.boxes);
+        List<Box> boxes = searchResultWithoutBookList.pageProps!.pageConfig!.boxes;
+        boxes.removeWhere((box) => box.title=='کتاب‌های صوتی');
+        setWithoutBookListBoxValue(boxes);
         // print(searchResultWithoutBookList.pageProps!.pageConfig!.boxes);
         // print("no booklist but box, boxes: $getWithoutBookListBoxValue");
         setFetchingStatus(HttpStatusEnum.found);

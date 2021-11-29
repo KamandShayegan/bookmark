@@ -4,7 +4,6 @@ import 'package:bookmark_codebase/utils/main/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
-
 import 'business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 
 void main() async {
