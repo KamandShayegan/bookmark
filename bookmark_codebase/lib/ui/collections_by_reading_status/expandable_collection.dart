@@ -2,6 +2,8 @@ import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/components/expansion_panel/expansion_panel.dart';
 import 'package:bookmark_codebase/components/expansion_panel/expansion_panel_header.dart';
+import 'package:bookmark_codebase/components/expansion_panel/is_reading_body.dart';
+import 'package:bookmark_codebase/components/expansion_panel/read_before_body.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:bookmark_codebase/utils/methods/set_by_reading_status/set_string_by_reading_status.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/material.dart';
 class ExpandableCollection extends StatelessWidget {
   final ReadingStatus readingStatus;
   final List<Book> books;
+
   const ExpandableCollection(
       {Key? key, required this.readingStatus, required this.books})
       : super(key: key);
@@ -36,14 +39,19 @@ class ExpandableCollection extends StatelessWidget {
           margin: const EdgeInsets.symmetric(horizontal: 16),
           child: ListView.builder(
               itemCount: books.length,
-              itemBuilder: (context, index){
-            return ExpansionWidget(
-              readingStatus: readingStatus,
-              expansionHeader: ExpansionPanelHeader(book: books[index], readingStatus: readingStatus,),
-              expansionBody:
-              const Text('اطلاعات بیشتری هنوز در دسترس نیست.'), index: index,
-            );
-          }),
+              itemBuilder: (context, index) {
+                return ExpansionWidget(
+                  readingStatus: readingStatus,
+                  expansionHeader: ExpansionPanelHeader(
+                    book: books[index],
+                    readingStatus: readingStatus,
+                  ),
+                  expansionBody: readingStatus == ReadingStatus.isReading
+                      ? IsReadingExpansionBody(book: books[index])
+                      : ReadBeforeExpansionBody(book: books[index]),
+                  index: index,
+                );
+              }),
         ),
       ),
     );

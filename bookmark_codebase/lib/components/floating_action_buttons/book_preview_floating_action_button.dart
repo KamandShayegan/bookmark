@@ -15,7 +15,7 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
         children: [
           Flexible(
             flex: 1,
-            child: SmallButton(
+            child: Button(
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -39,7 +39,7 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
           ),
           Flexible(
             flex: 1,
-            child: SmallButton(
+            child: Button(
               title: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(

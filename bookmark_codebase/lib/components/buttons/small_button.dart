@@ -1,12 +1,12 @@
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
 
-class SmallButton extends StatelessWidget {
+class Button extends StatelessWidget {
   final Widget title;
   final VoidCallback onTap;
   final Color defaultColor;
   final Color tappedColor;
-  const SmallButton(
+  const Button(
       {Key? key,
       required this.title,
       required this.onTap,

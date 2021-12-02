@@ -9,14 +9,20 @@ class Book {
   List<Comment> comments;
   String id;
   int pageCount;
+  DateTime? startDate;
+  int currentPage;
+
 
   Book(
       {this.name = 'بدون نام',
       this.author = 'بدون نویسنده',
       this.preview = 'بدون خلاصه',
       this.image = '',
-      this.rate = 0,
+      this.rate = 2,
       this.comments = const [],
       this.id = 'jfka-43',
-      this.pageCount = 0});
+      this.pageCount = 300,
+      this.startDate,
+        this.currentPage = 3,
+      });
 }

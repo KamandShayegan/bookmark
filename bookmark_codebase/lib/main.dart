@@ -1,9 +1,11 @@
 import 'package:bookmark_codebase/business_logic/services/providers/google_sign_in_provider.dart';
 import 'package:bookmark_codebase/business_logic/services/providers/search_book/search_book_provider.dart';
+import 'package:bookmark_codebase/components/expansion_panel/read_before_body.dart';
 import 'package:bookmark_codebase/utils/main/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
+import 'business_logic/models/objects/book.dart';
 import 'business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 
 void main() async {
@@ -52,7 +54,8 @@ class MyApp extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
               subtitle1: TextStyle(
-                fontSize: 16,
+                fontFamily: 'FaNum',
+                fontSize: 8,
                 fontWeight: FontWeight.w400,
               ),
               subtitle2: TextStyle(
@@ -87,11 +90,10 @@ class MyApp extends StatelessWidget {
                 fontFamily: 'FaNum',
                 fontSize: 14,
               ),
-              headline6: TextStyle(fontFamily: 'FaNum', fontSize: 12)
-              // mosradmard
-              // mostafa33
-              // 239728
+
+              headline6: TextStyle(fontFamily: 'FaNum', fontSize: 12),
               ),
+
         ),
         routes: routes,
         initialRoute: '/',

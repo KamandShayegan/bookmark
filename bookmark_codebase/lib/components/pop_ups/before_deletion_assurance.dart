@@ -37,7 +37,7 @@ class BeforeDeletionAssurance extends StatelessWidget {
         ),
         actionsAlignment: MainAxisAlignment.center,
         actions: <Widget>[
-          SmallButton(
+          Button(
             onTap: () {
               _deleteBook(index);
               Navigator.of(context).pop(true);
@@ -48,7 +48,7 @@ class BeforeDeletionAssurance extends StatelessWidget {
             defaultColor: Colors.white,
             tappedColor: MyColors.blue,
           ),
-          SmallButton(
+          Button(
             title: Text(
           'نه',
           style: Theme.of(context).textTheme.caption!.apply(color: Colors.black),),

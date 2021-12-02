@@ -66,7 +66,7 @@ class _PreviewState extends State<Preview> {
           actions: [
             Container(
               margin: EdgeInsets.only(left: 16, top: 8, bottom: 8),
-              child: SmallButton(
+              child: Button(
                 title: Text(
                   'شروع این کتاب',
                   style: Theme.of(context)

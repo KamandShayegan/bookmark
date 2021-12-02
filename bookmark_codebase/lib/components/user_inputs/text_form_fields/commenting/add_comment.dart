@@ -33,7 +33,7 @@ class CommentsTextFormField extends StatelessWidget {
         ),
         // const SizedBox(height: 24,),
         const Spacer(),
-        SmallButton(
+        Button(
           title: Text(
             'ارسال',
             style:
