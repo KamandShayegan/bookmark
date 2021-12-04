@@ -2,15 +2,20 @@ import 'package:bookmark_codebase/business_logic/models/json_2_dart/book_preview
     as bp;
 import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/business_logic/services/http_services/requests.dart';
+import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 import 'package:bookmark_codebase/components/book_containers/book_cover.dart';
-import 'package:bookmark_codebase/components/buttons/small_button.dart';
+import 'package:bookmark_codebase/components/buttons/button_example.dart';
+import 'package:bookmark_codebase/components/buttons/button.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/components/floating_action_buttons/book_preview_floating_action_button.dart';
+import 'package:bookmark_codebase/components/modal_sheets/starting_a_book.dart';
 import 'package:bookmark_codebase/components/rating/read_only_rating_bar.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/size_constants.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:provider/provider.dart';
 
 class Preview extends StatefulWidget {
   final Book book;
@@ -23,6 +28,7 @@ class Preview extends StatefulWidget {
 
 class _PreviewState extends State<Preview> {
   String description = '';
+  bool isAlreadyInReadingList = false;
 
   _fetchPreview() async {
     String id = widget.book.id;
@@ -46,6 +52,15 @@ class _PreviewState extends State<Preview> {
   @override
   void initState() {
     _fetchPreview();
+    SchedulerBinding.instance!.addPostFrameCallback((_) {
+      var readModel = context.read<HandlingBookshelvesProvider>();
+      readModel.isReading.map((e) {
+        if (e.id == widget.book.id) {
+          isAlreadyInReadingList = true;
+          setState(() {});
+        }
+      });
+    });
     super.initState();
   }
 
@@ -65,16 +80,30 @@ class _PreviewState extends State<Preview> {
           ),
           actions: [
             Container(
-              margin: EdgeInsets.only(left: 16, top: 8, bottom: 8),
+              margin: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
               child: Button(
+                isOn: isAlreadyInReadingList,
+                width: 120,
                 title: Text(
+                  !isAlreadyInReadingList?'شروع شده':
                   'شروع این کتاب',
                   style: Theme.of(context)
                       .textTheme
                       .caption!
                       .apply(color: Colors.white),
                 ),
-                onTap: () {},
+                onTap: () {
+                  showModalBottomSheet(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8.0),
+                      ),
+                      context: context,
+                      builder: (BuildContext context) {
+                        return StartingABook(
+                          book: widget.book,
+                        );
+                      });
+                },
                 tappedColor: MyColors.blue.withOpacity(0.3),
                 defaultColor: MyColors.blue.withOpacity(0.7),
               ),

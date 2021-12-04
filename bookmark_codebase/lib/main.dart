@@ -21,13 +21,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<GoogleSignInProvider>(
           create: (context) => GoogleSignInProvider(),
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<HandlingBookshelvesProvider>(
           create: (context) => HandlingBookshelvesProvider(),
         ),
-        ChangeNotifierProvider(
+        ChangeNotifierProvider<SearchBookProvider>(
           create: (context) => SearchBookProvider(),
         ),
       ],
@@ -40,60 +40,59 @@ class MyApp extends StatelessWidget {
           // primaryColor: MyColors.blue,
           scaffoldBackgroundColor: Colors.white,
           textTheme: const TextTheme(
-              //AppBar font style.
-              headline2: TextStyle(
-                fontSize: 11,
-              ),
-              button: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-              //H7-18 Medium
-              headline1: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
-              subtitle1: TextStyle(
-                fontFamily: 'FaNum',
-                fontSize: 8,
-                fontWeight: FontWeight.w400,
-              ),
-              subtitle2: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-              ),
-              bodyText1: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w100,
-              ),
-              bodyText2: TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w400,
-              ),
-              caption: TextStyle(
-                fontSize: 12,
-                fontWeight: FontWeight.w400,
-              ),
-              overline: TextStyle(
-                fontWeight: FontWeight.w400,
-                fontSize: 8,
-              ),
-              headline3: TextStyle(
-                  fontWeight: FontWeight.w800,
-                  fontFamily: 'ExtraBold',
-                  fontSize: 18),
-              headline4: TextStyle(
-                  fontFamily: 'ExtraBold',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w800),
-              headline5: TextStyle(
-                fontFamily: 'FaNum',
-                fontSize: 14,
-              ),
+            //AppBar font style.
+            headline2: TextStyle(
+              fontSize: 11,
+            ),
+            button: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+            //H7-18 Medium
+            headline1: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w500,
+            ),
+            subtitle1: TextStyle(
+              fontFamily: 'FaNum',
+              fontSize: 8,
+              fontWeight: FontWeight.w400,
+            ),
+            subtitle2: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+            ),
+            bodyText1: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w100,
+            ),
+            bodyText2: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+            ),
+            caption: TextStyle(
+              fontSize: 12,
+              fontWeight: FontWeight.w400,
+            ),
+            overline: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 8,
+            ),
+            headline3: TextStyle(
+                fontWeight: FontWeight.w800,
+                fontFamily: 'ExtraBold',
+                fontSize: 18),
+            headline4: TextStyle(
+                fontFamily: 'ExtraBold',
+                fontSize: 24,
+                fontWeight: FontWeight.w800),
+            headline5: TextStyle(
+              fontFamily: 'FaNum',
+              fontSize: 14,
+            ),
 
-              headline6: TextStyle(fontFamily: 'FaNum', fontSize: 12),
-              ),
-
+            headline6: TextStyle(fontFamily: 'FaNum', fontSize: 12),
+          ),
         ),
         routes: routes,
         initialRoute: '/',

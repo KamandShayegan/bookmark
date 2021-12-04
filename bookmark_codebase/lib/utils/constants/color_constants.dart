@@ -5,8 +5,11 @@ class MyColors {
   static const Color buttonColors = Color(0xff000000);
   static const Color lightBlue = Color(0xffC0DEDB);
   static const Color blue = Colors.blueGrey;
+  static Color blueDarker = Colors.blueGrey.shade700;
   static const Color purple = Color(0xff9A80C7);
+  static const Color purpleDarker = Color(0xff5b4287);
   static const Color bone = Color(0xffE6BE8A);
+  static const Color boneDarker = Color(0xffa3855f);
   static const Color ratingStars = Colors.amber;
 
   //----BOTTOM NAVIGATION BAR:

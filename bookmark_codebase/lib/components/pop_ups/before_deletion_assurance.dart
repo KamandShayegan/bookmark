@@ -1,5 +1,5 @@
 import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
-import 'package:bookmark_codebase/components/buttons/small_button.dart';
+import 'package:bookmark_codebase/components/buttons/button.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/svg_constants.dart';
@@ -38,6 +38,7 @@ class BeforeDeletionAssurance extends StatelessWidget {
         actionsAlignment: MainAxisAlignment.center,
         actions: <Widget>[
           Button(
+            width: 80,
             onTap: () {
               _deleteBook(index);
               Navigator.of(context).pop(true);
@@ -49,6 +50,7 @@ class BeforeDeletionAssurance extends StatelessWidget {
             tappedColor: MyColors.blue,
           ),
           Button(
+            width: 80,
             title: Text(
           'نه',
           style: Theme.of(context).textTheme.caption!.apply(color: Colors.black),),

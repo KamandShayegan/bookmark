@@ -1,4 +1,4 @@
-import 'package:bookmark_codebase/components/buttons/small_button.dart';
+import 'package:bookmark_codebase/components/buttons/button.dart';
 import 'package:flutter/material.dart';
 
 class CommentsTextFormField extends StatelessWidget {
@@ -34,6 +34,7 @@ class CommentsTextFormField extends StatelessWidget {
         // const SizedBox(height: 24,),
         const Spacer(),
         Button(
+          width: 90,
           title: Text(
             'ارسال',
             style:

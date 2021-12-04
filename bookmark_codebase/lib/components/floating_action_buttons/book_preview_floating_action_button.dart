@@ -1,4 +1,4 @@
-import 'package:bookmark_codebase/components/buttons/small_button.dart';
+import 'package:bookmark_codebase/components/buttons/button.dart';
 import 'package:flutter/material.dart';
 
 class BookPreviewFloatingActionButton extends StatelessWidget {
@@ -6,6 +6,7 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4),
       color: Colors.white,
@@ -16,6 +17,7 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
           Flexible(
             flex: 1,
             child: Button(
+              width: double.infinity,
               title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -40,6 +42,7 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
           Flexible(
             flex: 1,
             child: Button(
+              width: size.width * 0.3,
               title: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(

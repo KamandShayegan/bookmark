@@ -6,17 +6,22 @@ class Button extends StatelessWidget {
   final VoidCallback onTap;
   final Color defaultColor;
   final Color tappedColor;
+  final bool isOn;
+  final double width;
+  final bool isPrimary;
+
   const Button(
       {Key? key,
       required this.title,
+      this.isOn = true,
       required this.onTap,
       this.defaultColor = MyColors.bone,
-      this.tappedColor = MyColors.bone})
+      this.tappedColor = MyColors.bone, required this.width, this.isPrimary=true})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var tapped = tappedColor.withOpacity(0.8);
+    var tapped = tappedColor.withOpacity(0.5);
 
     Color getColor(Set<MaterialState> states) {
       const Set<MaterialState> interactiveStates = <MaterialState>{
@@ -25,25 +30,33 @@ class Button extends StatelessWidget {
         MaterialState.focused,
       };
       if (states.any(interactiveStates.contains)) {
-        return tapped;
+        return isOn? tapped : Colors.transparent;
       }
-      return defaultColor;
+      return isOn ? defaultColor : defaultColor.withOpacity(0.2);
     }
 
-    double getElevation(Set<MaterialState> states){
-      if(states.contains(MaterialState.pressed)){
+    double getElevation(Set<MaterialState> states) {
+      if (states.contains(MaterialState.pressed)) {
         return 3;
-      }else{
+      } else {
         return 1;
       }
     }
 
-    return TextButton(
+    return OutlinedButton(
       style: ButtonStyle(
+        fixedSize: MaterialStateProperty.all<Size>(Size(width, 48)),
+        side: MaterialStateProperty.all<BorderSide>(
+          BorderSide(
+            color: isOn ? (isPrimary?tappedColor:defaultColor):defaultColor,
+            width: 1
+
+          ),
+        ),
         backgroundColor: MaterialStateProperty.resolveWith(getColor),
         overlayColor: MaterialStateProperty.resolveWith(getColor),
       ),
-      onPressed: onTap,
+      onPressed: isOn ? onTap : null,
       child: title,
     );
   }

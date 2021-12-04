@@ -85,7 +85,9 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
   ];
 
   List<Book> get isReading => _isReading;
+
   List<Book> get readBefore => _readBefore;
+
   List<Book> get goingToRead => _goingToRead;
 
   Future loadAllBooks() async {
@@ -102,9 +104,21 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
 
   Future _fetchIsReadingBooks() async {}
 
-  Future addBook(ReadingStatus readingStatus, String bookId) async {
-    //here we fetch a book and .add it to the required list (based on reading status)
-    notifyListeners();
+  Future addBook(ReadingStatus readingStatus, Book book) async {
+    switch (readingStatus) {
+      case ReadingStatus.readBefore:
+        _readBefore.add(book);
+        notifyListeners();
+        break;
+      case ReadingStatus.goingToRead:
+        _goingToRead.add(book);
+        notifyListeners();
+        break;
+      case ReadingStatus.isReading:
+        _isReading.add(book);
+        notifyListeners();
+        break;
+    }
   }
 
   Future removeBook(ReadingStatus readingStatus, int i) async {

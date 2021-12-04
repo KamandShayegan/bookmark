@@ -41,7 +41,7 @@ class BookCover extends StatelessWidget {
                 //   ),
                 // ),
                 errorBuilder: (context, obj, _) => Text('عکس پیدا نشد',
-                    style: Theme.of(context).textTheme.subtitle2),
+                    style: Theme.of(context).textTheme.overline),
               ),
             ),
           );

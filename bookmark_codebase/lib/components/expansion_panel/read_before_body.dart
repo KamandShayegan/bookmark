@@ -1,5 +1,5 @@
 import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
-import 'package:bookmark_codebase/components/buttons/small_button.dart';
+import 'package:bookmark_codebase/components/buttons/button.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/components/user_inputs/text_form_fields/updating_current_page/updating_current_page.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
