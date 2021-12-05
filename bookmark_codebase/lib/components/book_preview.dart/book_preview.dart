@@ -11,6 +11,7 @@ import 'package:bookmark_codebase/components/progress_indicators/circular/custom
 import 'package:bookmark_codebase/components/rating/read_only_rating_bar.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/size_constants.dart';
+import 'package:bookmark_codebase/utils/methods/actions_on_lists/actions_on_lists.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -57,14 +58,8 @@ class _PreviewState extends State<Preview> {
   @override
   Widget build(BuildContext context) {
     var readModel = context.read<HandlingBookshelvesProvider>();
-    for (int i = 0; i < readModel.isReading.length; i++) {
-      if (readModel.isReading[i].id == widget.book.id) {
-        isAlreadyInReadingList = true;
-      } else {
-        isAlreadyInReadingList = false;
-      }
+    isAlreadyInReadingList = ActionsOnLists().isBookInTheList(widget.book,readModel.isReading);
       setState(() {});
-    }
     var size = MediaQuery
         .of(context)
         .size;
@@ -181,7 +176,7 @@ class _PreviewState extends State<Preview> {
             ],
           ),
         ),
-        floatingActionButton: const BookPreviewFloatingActionButton(),
+        floatingActionButton: BookPreviewFloatingActionButton(book: widget.book,),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );
