@@ -1,11 +1,23 @@
+import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
+import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 import 'package:bookmark_codebase/components/buttons/button.dart';
+import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class BookPreviewFloatingActionButton extends StatelessWidget {
-  const BookPreviewFloatingActionButton({Key? key}) : super(key: key);
+  final Book book;
+
+  const BookPreviewFloatingActionButton({Key? key, required this.book})
+      : super(key: key);
+
+
 
   @override
   Widget build(BuildContext context) {
+    var wModel = context.watch<HandlingBookshelvesProvider>();
+    bool isBookInGoingToRead = isBookInGoingToReadChecker(book.id);
+
     var size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -35,7 +47,9 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
                 ],
               ),
               tappedColor: Colors.black.withOpacity(0.3),
-              onTap: () {},
+              onTap: () {
+                wModel.addBook(ReadingStatus.goingToRead, book);
+              },
               defaultColor: Colors.black,
             ),
           ),
@@ -61,5 +75,9 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  bool isBookInGoingToReadChecker(String id, List<>) {
+    for(int i=0;i<)
   }
 }

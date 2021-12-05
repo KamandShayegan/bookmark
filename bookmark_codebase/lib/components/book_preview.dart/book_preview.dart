@@ -1,5 +1,3 @@
-import 'package:bookmark_codebase/business_logic/models/json_2_dart/book_preview.dart'
-    as bp;
 import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/business_logic/services/http_services/requests.dart';
 import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
@@ -9,6 +7,7 @@ import 'package:bookmark_codebase/components/buttons/button.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/components/floating_action_buttons/book_preview_floating_action_button.dart';
 import 'package:bookmark_codebase/components/modal_sheets/starting_a_book.dart';
+import 'package:bookmark_codebase/components/progress_indicators/circular/custom_circular_progress_indicator.dart';
 import 'package:bookmark_codebase/components/rating/read_only_rating_bar.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/size_constants.dart';
@@ -52,22 +51,23 @@ class _PreviewState extends State<Preview> {
   @override
   void initState() {
     _fetchPreview();
-    SchedulerBinding.instance!.addPostFrameCallback((_) {
-      var readModel = context.read<HandlingBookshelvesProvider>();
-      readModel.isReading.map((e) {
-        if (e.id == widget.book.id) {
-          isAlreadyInReadingList = true;
-          setState(() {});
-        }
-      });
-    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    print('id for this book is: ${widget.book.id}');
-    var size = MediaQuery.of(context).size;
+    var readModel = context.read<HandlingBookshelvesProvider>();
+    for (int i = 0; i < readModel.isReading.length; i++) {
+      if (readModel.isReading[i].id == widget.book.id) {
+        isAlreadyInReadingList = true;
+      } else {
+        isAlreadyInReadingList = false;
+      }
+      setState(() {});
+    }
+    var size = MediaQuery
+        .of(context)
+        .size;
     return RTLDirection(
       child: Scaffold(
         // backgroundColor: MyColors.bone,
@@ -82,12 +82,12 @@ class _PreviewState extends State<Preview> {
             Container(
               margin: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
               child: Button(
-                isOn: isAlreadyInReadingList,
+                isOn: !isAlreadyInReadingList,
                 width: 120,
                 title: Text(
-                  !isAlreadyInReadingList?'شروع شده':
-                  'شروع این کتاب',
-                  style: Theme.of(context)
+                  !isAlreadyInReadingList ? 'شروع این کتاب' : 'شروع',
+                  style: Theme
+                      .of(context)
                       .textTheme
                       .caption!
                       .apply(color: Colors.white),
@@ -130,7 +130,8 @@ class _PreviewState extends State<Preview> {
               ),
               Text(
                 widget.book.name,
-                style: Theme.of(context)
+                style: Theme
+                    .of(context)
                     .textTheme
                     .headline3!
                     .apply(color: Colors.black),
@@ -158,7 +159,8 @@ class _PreviewState extends State<Preview> {
                       alignment: Alignment.centerRight,
                       child: Text(
                         'خلاصه',
-                        style: Theme.of(context)
+                        style: Theme
+                            .of(context)
                             .textTheme
                             .bodyText2!
                             .apply(fontWeightDelta: 4, fontSizeDelta: 1),
@@ -167,6 +169,8 @@ class _PreviewState extends State<Preview> {
                     const SizedBox(
                       height: 8,
                     ),
+                    description == '' ? const CustomCircularProgressIndicatorWithText(
+                      leadingText: 'در حال دریافت خلاصه کتاب',):
                     Text(description),
                     const SizedBox(
                       height: 56,
