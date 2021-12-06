@@ -27,7 +27,7 @@ class _StartingABookState extends State<StartingABook> {
     var size = MediaQuery.of(context).size;
     return AnimatedContainer(
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 32),
-      height: size.height * 0.45,
+      height: size.height * 0.48,
       duration: const Duration(seconds: 0),
       child: Column(
         // mainAxisAlignment: MainAxisAlignment.spaceEvenly,

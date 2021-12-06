@@ -12,13 +12,12 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
   const BookPreviewFloatingActionButton({Key? key, required this.book})
       : super(key: key);
 
-
-
   @override
   Widget build(BuildContext context) {
     var wModel = context.watch<HandlingBookshelvesProvider>();
-    bool isBookInGoingToRead = ActionsOnLists().isBookInTheList(book, wModel.goingToRead);
-
+    bool isBookInGoingToRead =
+        ActionsOnLists().isBookInTheList(book, wModel.goingToRead);
+    bool hasBookBeenReadBefore = ActionsOnLists().isBookInTheList(book, wModel.readBefore);
     var size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -32,24 +31,22 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
             child: Button(
               isOn: !isBookInGoingToRead,
               width: double.infinity,
-              title:
-              isBookInGoingToRead?Text( 'تصمیم گرفتی بعدا بخونی',
-                style: Theme.of(context)
-                    .textTheme
-                    .caption!
-                    .apply(color: Colors.white),):
-              Row(
+              title: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'میخوام بعدا بخونم',
+                    isBookInGoingToRead
+                        ? 'قراره بعدا بخونی'
+                        : 'میخوام بعدا بخونم',
                     style: Theme.of(context)
                         .textTheme
                         .caption!
                         .apply(color: Colors.white),
                   ),
-                  const Icon(
-                    Icons.add,
+                  Icon(
+                    isBookInGoingToRead
+                        ? Icons.check
+                        : Icons.add,
                     color: Colors.white,
                   ),
                 ],
@@ -75,7 +72,9 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
                       .apply(color: Colors.black),
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                wModel.addBook(ReadingStatus.readBefore, book);
+              },
               defaultColor: Colors.white,
               tappedColor: Colors.black.withOpacity(0.1),
             ),

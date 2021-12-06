@@ -58,11 +58,10 @@ class _PreviewState extends State<Preview> {
   @override
   Widget build(BuildContext context) {
     var readModel = context.read<HandlingBookshelvesProvider>();
-    isAlreadyInReadingList = ActionsOnLists().isBookInTheList(widget.book,readModel.isReading);
-      setState(() {});
-    var size = MediaQuery
-        .of(context)
-        .size;
+    isAlreadyInReadingList =
+        ActionsOnLists().isBookInTheList(widget.book, readModel.isReading);
+    setState(() {});
+    var size = MediaQuery.of(context).size;
     return RTLDirection(
       child: Scaffold(
         // backgroundColor: MyColors.bone,
@@ -81,8 +80,7 @@ class _PreviewState extends State<Preview> {
                 width: 120,
                 title: Text(
                   !isAlreadyInReadingList ? 'شروع این کتاب' : 'شروع',
-                  style: Theme
-                      .of(context)
+                  style: Theme.of(context)
                       .textTheme
                       .caption!
                       .apply(color: Colors.white),
@@ -125,8 +123,7 @@ class _PreviewState extends State<Preview> {
               ),
               Text(
                 widget.book.name,
-                style: Theme
-                    .of(context)
+                style: Theme.of(context)
                     .textTheme
                     .headline3!
                     .apply(color: Colors.black),
@@ -154,8 +151,7 @@ class _PreviewState extends State<Preview> {
                       alignment: Alignment.centerRight,
                       child: Text(
                         'خلاصه',
-                        style: Theme
-                            .of(context)
+                        style: Theme.of(context)
                             .textTheme
                             .bodyText2!
                             .apply(fontWeightDelta: 4, fontSizeDelta: 1),
@@ -164,9 +160,17 @@ class _PreviewState extends State<Preview> {
                     const SizedBox(
                       height: 8,
                     ),
-                    description == '' ? const CustomCircularProgressIndicatorWithText(
-                      leadingText: 'در حال دریافت خلاصه کتاب',):
-                    Text(description),
+                    description == ''
+                        ? const CustomCircularProgressIndicatorWithText(
+                            leadingText: 'در حال دریافت خلاصه کتاب',
+                          )
+                        : Text(
+                            description,
+                            style: Theme.of(context)
+                                .textTheme
+                                .subtitle2!
+                                .apply(heightFactor: 2),
+                          ),
                     const SizedBox(
                       height: 56,
                     ),
@@ -176,7 +180,9 @@ class _PreviewState extends State<Preview> {
             ],
           ),
         ),
-        floatingActionButton: BookPreviewFloatingActionButton(book: widget.book,),
+        floatingActionButton: BookPreviewFloatingActionButton(
+          book: widget.book,
+        ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       ),
     );

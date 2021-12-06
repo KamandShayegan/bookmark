@@ -1,5 +1,4 @@
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
-import 'package:bookmark_codebase/utils/methods/actions_on_lists/option_selector.dart';
 import 'package:flutter/material.dart';
 
 class CustomCheckBox extends StatefulWidget {
