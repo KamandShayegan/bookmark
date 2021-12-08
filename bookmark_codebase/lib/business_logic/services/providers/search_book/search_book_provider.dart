@@ -9,6 +9,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/cupertino.dart';
 
 class SearchBookProvider extends ChangeNotifier {
+
   bool _hasBookList = false;
 
   bool get hasBookList => _hasBookList;
@@ -75,11 +76,10 @@ class SearchBookProvider extends ChangeNotifier {
       print("response: \n\n ${response.data} \n\n");
       if (response.data['pageProps']["pageConfig"]["boxes"] == null &&
           response.data['pageProps']["pageConfig"]["bookList"] == null) {
-        //not found
         print('not found');
         setFetchingStatus(HttpStatusEnum.notFound);
       }
-      if (response.data['pageProps']["pageConfig"]["bookList"] != null) {
+      else if (response.data['pageProps']["pageConfig"]["bookList"] != null) {
         //has booklist
         print('has booklist');
         wBookList.SearchResult searchResult =
@@ -104,25 +104,10 @@ class SearchBookProvider extends ChangeNotifier {
         // print("no booklist but box, boxes: $getWithoutBookListBoxValue");
         setFetchingStatus(HttpStatusEnum.found);
       }
-
-      // if (response.data['pageProps']["pageConfig"]["boxes"].isEmpty) {
-      //   print('no box');
-      // } else {
-      //
-      //   // print("res: ${response.data['pageProps']["pageConfig"]["boxes"]}");
-      //   print('has box');
-      //   setFetchingStatus(HttpStatusEnum.found);
-      // }
-
-      // print("no des res: ${response.data['pageProps']["pageConfig"]}");
-      // if(searchResult.pageProps!.pageConfig!.bookList==null){
-      //   print('no booklists');
-      // }
-      // print("all booklist books: ${searchResult.pageProps!.pageConfig!.bookList!.books} \n\n");
-      // print("all boxes books: ${searchResult.pageProps!.pageConfig!.boxes}\n\n");
     } on DioError {
       setFetchingStatus(HttpStatusEnum.error);
       rethrow;
     }
   }
+
 }

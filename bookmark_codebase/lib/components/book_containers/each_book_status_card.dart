@@ -115,22 +115,22 @@ class EachBookStatusCard extends StatelessWidget {
 
   Widget _navigateToCollections(
       ReadingStatus readingStatus, BuildContext context) {
-    var readModel = context.read<HandlingBookshelvesProvider>();
+    var wModel = context.watch<HandlingBookshelvesProvider>();
     List<Book> books = [];
     switch (readingStatus) {
       case ReadingStatus.readBefore:
-        books = readModel.readBefore;
+        books = wModel.readBefore;
         return ExpandableCollection(
           readingStatus: readingStatus,
           books: books,
         );
       case ReadingStatus.goingToRead:
-        books = readModel.goingToRead;
+        books = wModel.goingToRead;
         return GoingToReadCollection(
           books: books,
         );
       case ReadingStatus.isReading:
-        books = readModel.isReading;
+        books = wModel.isReading;
         return ExpandableCollection(
           readingStatus: readingStatus,
           books: books,

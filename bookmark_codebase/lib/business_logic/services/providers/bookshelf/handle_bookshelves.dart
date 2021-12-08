@@ -3,6 +3,15 @@ import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:flutter/material.dart';
 
 class HandlingBookshelvesProvider extends ChangeNotifier {
+
+  int _locallyChangedCurrentPage=0;
+  int get locallyChangedCurrentPage => _locallyChangedCurrentPage;
+  setLocallyChangedCurrentPage(int curPage){
+    _locallyChangedCurrentPage = curPage;
+    // notifyListeners();
+  }
+
+
   List<Book> _isReading = [
     Book(
         id: 'faadss',
@@ -137,5 +146,15 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
     _goingToRead.removeWhere((e) => e.id == book.id);
     _isReading.add(book);
     notifyListeners();
+  }
+
+  setNewCurrentPage(Book book, int newCurPage){
+    for(int i=0;i<_isReading.length;i++){
+      if(_isReading[i].id == book.id){
+        _isReading[i].currentPage=newCurPage;
+        notifyListeners();
+      }
+    }
+
   }
 }

@@ -1,29 +1,45 @@
+import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
+import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-class UpdatingCurrentpageTextFormField extends StatelessWidget {
+class UpdatingCurrentPageTextFormField extends StatefulWidget {
+  final Book book;
   final TextEditingController controller;
   final int currentPageAsHint;
   final int lastPage;
 
-  const UpdatingCurrentpageTextFormField(
+  const UpdatingCurrentPageTextFormField(
       {Key? key,
       required this.controller,
       required this.currentPageAsHint,
-      required this.lastPage})
+      required this.lastPage,
+      required this.book})
       : super(key: key);
 
   @override
+  State<UpdatingCurrentPageTextFormField> createState() =>
+      _UpdatingCurrentPageTextFormFieldState();
+}
+
+class _UpdatingCurrentPageTextFormFieldState
+    extends State<UpdatingCurrentPageTextFormField> {
+
+  @override
   Widget build(BuildContext context) {
+    bool updatePercentIndicator = true;
+    print(
+        'updating current page text form field: (current page as hint): ${widget.currentPageAsHint}');
     return TextFormField(
       validator: (val) {
         if (val == null || val.isEmpty) {
           return null;
         }
         // print('${int.parse(val!)}');
-        if (int.parse(val) > lastPage) {
-          print('wtf');
-          return 'کتاب $lastPage صفحه است.';
+        if (int.parse(val) > widget.lastPage) {
+          updatePercentIndicator = false;
+          return 'کتاب ${widget.lastPage} صفحه است.';
         }
       },
       cursorWidth: 1,
@@ -38,16 +54,22 @@ class UpdatingCurrentpageTextFormField extends StatelessWidget {
         focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: MyColors.bone.withOpacity(0.2))),
         contentPadding: EdgeInsets.zero,
-        hintText: currentPageAsHint.toString(),
+        hintText: widget.currentPageAsHint.toString(),
         hintStyle:
             Theme.of(context).textTheme.headline5!.apply(color: Colors.grey),
       ),
       textDirection: TextDirection.rtl,
       textAlign: TextAlign.center,
       keyboardType: TextInputType.number,
-      controller: controller,
+      controller: widget.controller,
       onChanged: (value) {
-        print(value);
+        if (value.isNotEmpty) {
+          var wModel = context.read<HandlingBookshelvesProvider>();
+
+          updatePercentIndicator
+              ? wModel.setNewCurrentPage(widget.book, int.parse(value))
+              : null;
+        }
       },
     );
   }

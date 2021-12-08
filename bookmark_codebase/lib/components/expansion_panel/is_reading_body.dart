@@ -1,4 +1,7 @@
-import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
+import
+
+'package:bookmark_codebase/business_logic/models/objects/book.dart';
+import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 import 'package:bookmark_codebase/components/buttons/button.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/components/progress_indicators/circular_percent_indicator.dart';
@@ -8,6 +11,7 @@ import 'package:bookmark_codebase/utils/methods/actions_on_page_counts/actions_o
 import 'package:bookmark_codebase/utils/methods/datetime/datetime_calculations.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:provider/provider.dart';
 
 class IsReadingExpansionBody extends StatefulWidget {
   final Book book;
@@ -88,10 +92,11 @@ class _IsReadingExpansionBodyState extends State<IsReadingExpansionBody> {
                         }
                         setState(() {});
                       },
-                      child: UpdatingCurrentpageTextFormField(
+                      child: UpdatingCurrentPageTextFormField(
                         currentPageAsHint: widget.book.currentPage,
                         controller: _controller,
                         lastPage: lastPage,
+                        book: widget.book,
                       ),
                     )
 
@@ -121,23 +126,26 @@ class _IsReadingExpansionBodyState extends State<IsReadingExpansionBody> {
                 )
               ],
             ),
-            Align(
-              alignment: Alignment.bottomLeft,
-              child: Button(
-                width: 90,
-                tappedColor: MyColors.boneDarker,
-                isOn: validated,
-                title: Text(
-                  'بروز رسانی',
-                  style: Theme.of(context).textTheme.headline6!.apply(
-                      color: validated
-                          ? Colors.white.withOpacity(0.7)
-                          : MyColors.bone.withOpacity(0.6),
-                      fontWeightDelta: 2),
-                ),
-                onTap: () {},
-              ),
-            )
+            // Align(
+            //   alignment: Alignment.bottomLeft,
+            //   child: Button(
+            //     width: 90,
+            //     tappedColor: MyColors.boneDarker,
+            //     isOn: validated,
+            //     title: Text(
+            //       'بروز رسانی',
+            //       style: Theme.of(context).textTheme.headline6!.apply(
+            //           color: validated
+            //               ? Colors.white.withOpacity(0.7)
+            //               : MyColors.bone.withOpacity(0.6),
+            //           fontWeightDelta: 2),
+            //     ),
+            //     onTap: () {
+            //       // var rModel = context.read<HandlingBookshelvesProvider>();
+            //       // rModel.setNewCurrentPage(widget.book);
+            //     },
+            //   ),
+            // )
           ],
         ),
       ),
