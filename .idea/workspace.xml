@@ -23,33 +23,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5b891f42-733c-456c-b631-ef3728b88ebb" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/bookmark_codebase/assets/svg/archive.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookmark_codebase/assets/svg/book-open.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookmark_codebase/assets/svg/comment.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookmark_codebase/assets/svg/feather.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookmark_codebase/assets/svg/inbox.svg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/buttons/small_button.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/pop_ups/add_comment/add_comment.dart" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/user_inputs/text_form_fields/comment_text_form_field.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/bookmark.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bookmark.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Dart_SDK.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookmark_codebase/assets/svg/bookmark.svg" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/assets/svg/bookmark.svg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/business_logic/services/providers/bottom_navigation_bar_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/business_logic/services/providers/bottom_navigation_bar_provider.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/business_logic/services/providers/bookshelf/handle_bookshelves.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/business_logic/services/providers/bookshelf/handle_bookshelves.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/business_logic/services/providers/search_book/search_book_provider.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/business_logic/services/providers/search_book/search_book_provider.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/components/book_containers/each_book_status_card.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/book_containers/each_book_status_card.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/components/bottom_nav_bar/custom_navigation_bar.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/bottom_nav_bar/custom_navigation_bar.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/components/bottom_nav_bar/each_nav_bar_button.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/bottom_nav_bar/each_nav_bar_button.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/components/bottom_nav_bar/main _page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/bottom_nav_bar/main _page.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/ui/profile/users_google_account_details.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/ui/profile/users_google_account_details.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/utils/constants/color_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/utils/constants/color_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/utils/constants/string_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/utils/constants/string_constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/utils/constants/svg_constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/utils/constants/svg_constants.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/components/expansion_panel/is_reading_body.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/expansion_panel/is_reading_body.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/components/progress_indicators/circular_percent_indicator.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/progress_indicators/circular_percent_indicator.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bookmark_codebase/lib/components/user_inputs/text_form_fields/updating_current_page/updating_current_page.dart" beforeDir="false" afterPath="$PROJECT_DIR$/bookmark_codebase/lib/components/user_inputs/text_form_fields/updating_current_page/updating_current_page.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/kamandshayegan/.android/avd/Pixel_4_XL_API_27.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/Users/kamandshayegan/.android/avd/Pixel_XL_API_26.avd]" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -83,7 +72,7 @@
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="io.flutter.reload.alreadyRun" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
