@@ -1,3 +1,4 @@
+import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 import 'package:bookmark_codebase/components/buttons/button.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
@@ -11,17 +12,17 @@ import 'package:provider/provider.dart';
 
 class BeforeDeletionAssurance extends StatelessWidget {
   final ReadingStatus readingStatus;
-  final int index;
+  final Book book;
   const BeforeDeletionAssurance(
-      {Key? key, required this.readingStatus, required this.index})
+      {Key? key, required this.readingStatus, required this.book})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var wModel = context.watch<HandlingBookshelvesProvider>();
 
-    _deleteBook(int index) {
-      wModel.removeBook(readingStatus, index);
+    _deleteBook() {
+      wModel.removeBook(readingStatus, book);
     }
 
     return RTLDirection(
@@ -40,7 +41,7 @@ class BeforeDeletionAssurance extends StatelessWidget {
           Button(
             width: 80,
             onTap: () {
-              _deleteBook(index);
+              _deleteBook();
               Navigator.of(context).pop(true);
             },
             title: Text(

@@ -4,7 +4,7 @@ import 'package:bookmark_codebase/components/decorated_containers/going_to_read_
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/components/dismissible/custom_dismissible.dart';
 import 'package:bookmark_codebase/components/dismissible/dismissible_background.dart';
-import 'package:bookmark_codebase/components/pop_ups/before_deletion_assurance.dart';
+import 'package:bookmark_codebase/components/pop_ups/before_deletion_alert_dialogs/before_deletion_assurance.dart';
 import 'package:bookmark_codebase/components/progress_indicators/circular/custom_circular_progress_indicator.dart';
 import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/constants/string_constants.dart';
@@ -71,7 +71,7 @@ class _GoingToReadCollectionState extends State<GoingToReadCollection> {
                         itemBuilder: (builder, i) {
                           return CustomDismissible(
                             readingStatus: readingStatus,
-                            index: i,
+                            book: widget.books[i],
                             child: GoingToReadContainer(
                               onTap: () async {
                                 setState(() {

@@ -10,6 +10,7 @@ class Book {
   String id;
   int pageCount;
   DateTime? startDate;
+  DateTime? finishDate;
   int currentPage;
 
 
@@ -24,5 +25,6 @@ class Book {
       this.pageCount = 300,
       this.startDate,
         this.currentPage = 3,
+        this.finishDate
       });
 }

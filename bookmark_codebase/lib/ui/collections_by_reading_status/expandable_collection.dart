@@ -49,7 +49,7 @@ class ExpandableCollection extends StatelessWidget {
                   expansionBody: readingStatus == ReadingStatus.isReading
                       ? IsReadingExpansionBody(book: books[index])
                       : ReadBeforeExpansionBody(book: books[index]),
-                  index: index,
+                  book: books[index],
                 );
               }),
         ),

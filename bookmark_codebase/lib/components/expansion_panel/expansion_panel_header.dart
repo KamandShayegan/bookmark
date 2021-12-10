@@ -16,16 +16,20 @@ class ExpansionPanelHeader extends StatelessWidget {
         const SizedBox(
           width: 16,
         ),
-        Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(book.name),
-            Text(
-              book.author,
-              textDirection: TextDirection.rtl,
-            ),
-          ],
+        Container(
+          width: MediaQuery.of(context).size.width * 0.45,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(book.name, overflow: TextOverflow.ellipsis,),
+              Text(
+                book.author,
+                textDirection: TextDirection.rtl,
+                  overflow: TextOverflow.ellipsis,
+              ),
+            ],
+          ),
         )
       ],
     );

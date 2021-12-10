@@ -10,6 +10,8 @@ class SvgPaths {
   static const String comment = 'assets/svg/comment.svg';
   static const String search = 'assets/svg/search.svg';
   static const String trash = 'assets/svg/trash.svg';
+  static const String confetti = 'assets/svg/confetti.svg';
+
 }
 
 class NavBarIcon {

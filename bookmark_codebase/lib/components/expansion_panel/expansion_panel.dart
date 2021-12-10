@@ -1,3 +1,4 @@
+import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/components/dismissible/custom_dismissible.dart';
 import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:bookmark_codebase/utils/methods/set_by_reading_status/set_color_by_reading_status.dart';
@@ -7,12 +8,12 @@ class ExpansionWidget extends StatefulWidget {
   final ReadingStatus readingStatus;
   final Widget expansionHeader;
   final Widget expansionBody;
-  final int index;
+  final Book book;
   const ExpansionWidget(
       {Key? key,
       required this.readingStatus,
       required this.expansionHeader,
-      required this.expansionBody, required this.index})
+      required this.expansionBody, required this.book})
       : super(key: key);
 
   @override
@@ -25,7 +26,7 @@ class _ExpansionWidgetState extends State<ExpansionWidget> {
   @override
   Widget build(BuildContext context) {
     return CustomDismissible(
-      index: widget.index,
+      book: widget.book,
       readingStatus: widget.readingStatus,
       child: Container(
         margin: const EdgeInsets.only(bottom: 16),

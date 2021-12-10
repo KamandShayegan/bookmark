@@ -14,6 +14,7 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
 
   List<Book> _isReading = [
     Book(
+      pageCount: 200,
         id: 'faadss',
         name: 'سه شنبه ها با موری',
         image:
@@ -24,26 +25,31 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
         image: '',
         id: 'ffdfdfdfdfdfdfdllalallllalalala'),
     Book(
+      pageCount: 100,
         id: 'ffdfdfdfdfdfdfdllalallllalalal33333a',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
+      pageCount: 200,
         id: 'ffdfdf21212dfdfdfdfdllalallllalalala',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
+      pageCount: 300,
         id: '1234',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
+      pageCount: 200,
         id: '345',
         name: 'سه شنبه ها با موری',
         image:
             'https://www.shahrezaban.com/media/uploads/catalog/default/product_2391_1561121169_93380.jpg'),
     Book(
+      pageCount: 400,
         id: '20192',
         name: 'سه شنبه ها با موری',
         image:
@@ -130,16 +136,30 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
     }
   }
 
-  Future removeBook(ReadingStatus readingStatus, int i) async {
+  Future removeBook(ReadingStatus readingStatus, Book book) async {
     if (readingStatus == ReadingStatus.isReading) {
-      _isReading.removeAt(i);
+      for(int i=0;i<_isReading.length;i++){
+        if(book.id==_isReading[i].id){
+          _isReading.removeAt(i);
+          notifyListeners();
+        }
+      }
     } else if (readingStatus == ReadingStatus.goingToRead) {
-      _goingToRead.removeAt(i);
+      for(int i=0;i<_goingToRead.length;i++){
+        if(book.id==_goingToRead[i].id){
+          _goingToRead.removeAt(i);
+          notifyListeners();
+        }
+      }
     } else if (readingStatus == ReadingStatus.readBefore) {
-      _readBefore.removeAt(i);
+      for(int i=0;i<_readBefore.length;i++){
+        if(book.id==_readBefore[i].id){
+          _readBefore.removeAt(i);
+          notifyListeners();
+        }
+      }
     }
     //based on reading status, first we remove the book locally and then let the database know that the book is removed. (or reversed order)
-    notifyListeners();
   }
 
   Future startReading(Book book) async {
@@ -155,6 +175,12 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
         notifyListeners();
       }
     }
+
+  }
+
+  setFinishedDate(Book book){
+    //first we set date and then we add it to _readBefore list.
+
 
   }
 }

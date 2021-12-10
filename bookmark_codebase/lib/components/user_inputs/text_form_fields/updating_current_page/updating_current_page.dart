@@ -25,12 +25,9 @@ class UpdatingCurrentPageTextFormField extends StatefulWidget {
 
 class _UpdatingCurrentPageTextFormFieldState
     extends State<UpdatingCurrentPageTextFormField> {
-
   @override
   Widget build(BuildContext context) {
     bool updatePercentIndicator = true;
-    print(
-        'updating current page text form field: (current page as hint): ${widget.currentPageAsHint}');
     return TextFormField(
       validator: (val) {
         if (val == null || val.isEmpty) {

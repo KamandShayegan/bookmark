@@ -30,7 +30,7 @@ class _StartingABookState extends State<StartingABook> {
       height: size.height * 0.48,
       duration: const Duration(seconds: 0),
       child: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           GestureDetector(
             onTap: () {
@@ -79,75 +79,78 @@ class _StartingFromASpecificPageState extends State<StartingFromASpecificPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: Column(
-        children: [
-          AnimatedContainer(
-            duration: const Duration(seconds: 1),
-            decoration: BoxDecoration(
-              color: widget.isNotFaded
-                  ? MyColors.blue
-                  : MyColors.blue.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(8),
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: Expanded(
+        child: Column(
+          children: [
+            AnimatedContainer(
+              duration: const Duration(seconds: 1),
+              decoration: BoxDecoration(
+                color: widget.isNotFaded
+                    ? MyColors.blue
+                    : MyColors.blue.withOpacity(0.2),
+                borderRadius: BorderRadius.circular(8),
+              ),
+              height: 120,
+              width: 60,
+              child: widget.isNotFaded
+                  ? WheelChooser.integer(
+                      unSelectTextStyle: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .apply(color: Colors.black38),
+                      selectTextStyle: Theme.of(context)
+                          .textTheme
+                          .headline6!
+                          .apply(
+                              color: Colors.black.withOpacity(0.7),
+                              fontWeightDelta: 2),
+                      onValueChanged: (i) {
+                        curPage = i;
+                        setState(() {});
+                      },
+                      maxValue: widget.book.pageCount,
+                      minValue: 1,
+                      step: 1,
+                    )
+                  : Center(
+                      child: Text(
+                      '-',
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline4!
+                          .apply(color: MyColors.blue),
+                    )),
             ),
-            height: 120,
-            width: 60,
-            child: widget.isNotFaded
-                ? WheelChooser.integer(
-                    unSelectTextStyle: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .apply(color: Colors.black38),
-                    selectTextStyle: Theme.of(context)
-                        .textTheme
-                        .headline6!
-                        .apply(
-                            color: Colors.black.withOpacity(0.7),
-                            fontWeightDelta: 2),
-                    onValueChanged: (i) {
-                      curPage = i;
-                      setState(() {});
-                    },
-                    maxValue: widget.book.pageCount,
-                    minValue: 1,
-                    step: 1,
-                  )
-                : Center(
-                    child: Text(
-                    '-',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline4!
-                        .apply(color: MyColors.blue),
-                  )),
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          Button(
-            title: Text(
-              'شروع',
-              style: Theme.of(context)
-                  .textTheme
-                  .button!
-                  .apply(color: Colors.white),
+            const SizedBox(
+              height: 8,
             ),
-            onTap: () {
-              var readModel = context.read<HandlingBookshelvesProvider>();
-              widget.book.currentPage = curPage;
-              widget.book.startDate = DateTime.now();
-              readModel.addBook(ReadingStatus.isReading, widget.book);
-              Navigator.pop(context);
-              Navigator.pop(context);
-            },
-            width: 70,
-            tappedColor: MyColors.lightBlue,
-            isPrimary: false,
-            isOn: widget.isNotFaded ? (curPage == 1 ? false : true) : true,
-            defaultColor: MyColors.blueDarker,
-          ),
-        ],
+            Button(
+              title: Text(
+                'شروع',
+                style: Theme.of(context)
+                    .textTheme
+                    .button!
+                    .apply(color: Colors.white),
+              ),
+              onTap: () {
+                var readModel = context.read<HandlingBookshelvesProvider>();
+                widget.book.currentPage = curPage;
+                widget.book.startDate = DateTime.now();
+                readModel.addBook(ReadingStatus.isReading, widget.book);
+                Navigator.pop(context);
+                Navigator.pop(context);
+              },
+              width: 70,
+              tappedColor: MyColors.lightBlue,
+              isPrimary: false,
+              isOn: widget.isNotFaded ? (curPage == 1 ? false : true) : true,
+              defaultColor: MyColors.blueDarker,
+            ),
+          ],
+        ),
       ),
     );
   }

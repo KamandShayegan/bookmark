@@ -79,7 +79,7 @@ class _PreviewState extends State<Preview> {
                 isOn: !isAlreadyInReadingList,
                 width: 120,
                 title: Text(
-                  !isAlreadyInReadingList ? 'شروع این کتاب' : 'شروع',
+                  !isAlreadyInReadingList ? 'شروع این کتاب' : ' شروع شده',
                   style: Theme.of(context)
                       .textTheme
                       .caption!
