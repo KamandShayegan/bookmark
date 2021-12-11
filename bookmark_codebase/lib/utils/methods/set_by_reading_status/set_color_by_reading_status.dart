@@ -10,5 +10,8 @@ Color setColorByReadingStatus(ReadingStatus stat) {
       return MyColors.blue;
     case ReadingStatus.isReading:
       return MyColors.bone;
+    case ReadingStatus.none:
+      return Colors.green; //won't be used
+
   }
 }

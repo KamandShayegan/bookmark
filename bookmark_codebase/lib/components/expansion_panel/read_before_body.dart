@@ -20,10 +20,62 @@ class ReadBeforeExpansionBody extends StatefulWidget {
 }
 
 class _ReadBeforeExpansionBodyState extends State<ReadBeforeExpansionBody> {
-
   @override
   Widget build(BuildContext context) {
-    return Container();
-  }
+    var textTheme = Theme.of(context).textTheme.headline5;
+    bool isEmpty = false;
+    String startDate = '';
+    String finishDate = '';
+    try {
+      startDate = DateTimeCalculations()
+          .dateTimeToJalaliWithFormattedResult(widget.book.startDate!);
+      finishDate = DateTimeCalculations()
+          .dateTimeToJalaliWithFormattedResult(widget.book.finishDate!);
+    } catch (e) {
+      startDate = '-';
+      finishDate = '-';
+      isEmpty = true;
+    }
 
+    if (startDate.isEmpty || finishDate.isEmpty) {
+      print('true');
+    }
+
+    return Container(
+      margin: const EdgeInsets.all(8),
+      child: isEmpty
+          ? Center(
+              child: Text(
+                'اطلاعاتی در دسترس نیست.',
+                style: textTheme,
+              ),
+            )
+          : Column(
+              children: [
+                Row(
+                  children: [
+                    SizedBox(
+                        width: 40, child: Text('شروع:', style: textTheme)),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text(startDate, style: textTheme),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                        width: 40, child: Text('پایان:', style: textTheme)),
+                    const SizedBox(
+                      width: 8,
+                    ),
+                    Text(finishDate, style: textTheme),
+                  ],
+                )
+              ],
+            ),
+    );
+  }
 }
+
+

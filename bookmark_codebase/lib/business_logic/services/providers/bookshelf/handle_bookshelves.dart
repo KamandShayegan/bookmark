@@ -159,19 +159,21 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
         }
       }
     }
-    //based on reading status, first we remove the book locally and then let the database know that the book is removed. (or reversed order)
   }
 
   Future startReading(Book book) async {
     _goingToRead.removeWhere((e) => e.id == book.id);
+    book.startDate = DateTime.now();
     _isReading.add(book);
     notifyListeners();
   }
 
-  setNewCurrentPage(Book book, int newCurPage){
+  int localCurPage = 0;
+
+  setNewCurrentPage(Book book,){
     for(int i=0;i<_isReading.length;i++){
       if(_isReading[i].id == book.id){
-        _isReading[i].currentPage=newCurPage;
+        _isReading[i].currentPage=localCurPage;
         notifyListeners();
       }
     }
@@ -179,8 +181,8 @@ class HandlingBookshelvesProvider extends ChangeNotifier {
   }
 
   setFinishedDate(Book book){
+    book.finishDate = DateTime.now();
     //first we set date and then we add it to _readBefore list.
-
-
+    notifyListeners();
   }
 }

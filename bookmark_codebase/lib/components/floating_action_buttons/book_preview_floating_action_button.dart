@@ -16,8 +16,8 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var wModel = context.watch<HandlingBookshelvesProvider>();
     bool isBookInGoingToRead =
-        ActionsOnLists().isBookInTheList(book, wModel.goingToRead);
-    bool hasBookBeenReadBefore = ActionsOnLists().isBookInTheList(book, wModel.readBefore);
+        ActionsOnLists().isBookInTheList(book, wModel.goingToRead)!;
+    bool hasBookBeenReadBefore = ActionsOnLists().isBookInTheList(book, wModel.readBefore)!;
     var size = MediaQuery.of(context).size;
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 4),
@@ -61,15 +61,17 @@ class BookPreviewFloatingActionButton extends StatelessWidget {
           Flexible(
             flex: 1,
             child: Button(
+              isOn: !hasBookBeenReadBefore,
               width: size.width * 0.3,
               title: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Text(
+                  hasBookBeenReadBefore?'قبلا خوندیش':
                   'قبلا خوندم',
                   style: Theme.of(context)
                       .textTheme
                       .caption!
-                      .apply(color: Colors.black),
+                      .apply(color: hasBookBeenReadBefore?Colors.grey:Colors.black),
                 ),
               ),
               onTap: () {

@@ -1,1 +1,1 @@
-enum ReadingStatus { readBefore, goingToRead, isReading }
+enum ReadingStatus { readBefore, goingToRead, isReading, none }

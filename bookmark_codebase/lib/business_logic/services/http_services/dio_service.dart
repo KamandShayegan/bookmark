@@ -4,8 +4,8 @@ import 'package:dio/dio.dart';
 class DioService {
   Dio dio = Dio(
     BaseOptions(
-      connectTimeout: 50000,
-      receiveTimeout: 50000,
+      connectTimeout: 5000,
+      receiveTimeout: 5000,
     ),
   );
   // initializeInterceptors() {

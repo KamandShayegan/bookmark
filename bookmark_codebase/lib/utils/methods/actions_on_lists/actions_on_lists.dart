@@ -12,15 +12,13 @@ class ActionsOnLists {
     }
   }
 
-  bool isBookInTheList(Book book, List<Book> shelf) {
-    bool isInTheList=false;
+  bool? isBookInTheList(Book book, List<Book> shelf) {
     for (int i = 0; i < shelf.length; i++) {
       if (shelf[i].id == book.id) {
-        isInTheList = true;
+        return true;
       } else {
-        isInTheList = false;
+        return false;
       }
     }
-    return isInTheList;
   }
 }

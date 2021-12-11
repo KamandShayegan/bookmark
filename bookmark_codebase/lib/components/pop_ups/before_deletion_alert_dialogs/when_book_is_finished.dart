@@ -24,11 +24,11 @@ class _FinishedBookAlertDialogState extends State<FinishedBookAlertDialog> {
   Widget build(BuildContext context) {
     var textTheme =
     Theme.of(context).textTheme.subtitle2!.apply(color: Colors.white);
-    var wModel = context.watch<HandlingBookshelvesProvider>();
+    var rModel = context.read<HandlingBookshelvesProvider>();
     _removeBookFromReading() {
-      wModel.setFinishedDate(widget.book);
-      wModel.addBook(ReadingStatus.readBefore, widget.book);
-      wModel.removeBook(ReadingStatus.isReading, widget.book);
+      rModel.setFinishedDate(widget.book);
+      rModel.addBook(ReadingStatus.readBefore, widget.book);
+      rModel.removeBook(ReadingStatus.isReading, widget.book);
     }
 
     return RTLDirection(
@@ -42,7 +42,7 @@ class _FinishedBookAlertDialogState extends State<FinishedBookAlertDialog> {
             const SizedBox(
               height: 8,
             ),
-            const Text('تموم؟'),
+            const Text('مطمئنی؟'),
           ],
         ),
         actionsAlignment: MainAxisAlignment.center,
@@ -63,7 +63,7 @@ class _FinishedBookAlertDialogState extends State<FinishedBookAlertDialog> {
               style: textTheme,
             ),
             onTap: () {
-              Navigator.of(context).pop(false);
+              Navigator.of(context).pop(true);
             },
             width: 60,
           ),

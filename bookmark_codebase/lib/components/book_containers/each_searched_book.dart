@@ -1,6 +1,7 @@
 import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
 import 'package:bookmark_codebase/components/book_containers/book_cover.dart';
 import 'package:bookmark_codebase/components/book_preview.dart/book_preview.dart';
+import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:flutter/material.dart';
 
 class EachSearchedBook extends StatelessWidget {
@@ -12,8 +13,15 @@ class EachSearchedBook extends StatelessWidget {
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return InkWell(
-      onTap: (){
-        Navigator.push(context, MaterialPageRoute(builder: (_)=>Preview(book: book),));
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => Preview(
+                book: book,
+                readingStatus: ReadingStatus.none,
+              ),
+            ));
       },
       child: Container(
           decoration: BoxDecoration(
@@ -30,15 +38,22 @@ class EachSearchedBook extends StatelessWidget {
                 name: book.name,
                 image: book.image,
               ),
-              const SizedBox(width: 8,),
+              const SizedBox(
+                width: 8,
+              ),
               Flexible(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(book.name, overflow: TextOverflow.ellipsis,),
-                    Text(book.author, overflow: TextOverflow.ellipsis,),
-
+                    Text(
+                      book.name,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    Text(
+                      book.author,
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ],
                 ),
               ),

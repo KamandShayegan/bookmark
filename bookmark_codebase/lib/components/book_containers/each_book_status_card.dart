@@ -110,28 +110,26 @@ class EachBookStatusCard extends StatelessWidget {
         return watch.goingToRead;
       case ReadingStatus.isReading:
         return watch.isReading;
+      case ReadingStatus.none:
+        return []; //nothing
     }
   }
 
   Widget _navigateToCollections(
       ReadingStatus readingStatus, BuildContext context) {
-    var wModel = context.watch<HandlingBookshelvesProvider>();
-
     switch (readingStatus) {
       case ReadingStatus.readBefore:
         return ExpandableCollection(
           readingStatus: readingStatus,
-          books: wModel.readBefore,
         );
       case ReadingStatus.goingToRead:
-        return GoingToReadCollection(
-          books: wModel.goingToRead,
-        );
+        return const GoingToReadCollection();
       case ReadingStatus.isReading:
         return ExpandableCollection(
           readingStatus: readingStatus,
-          books: wModel.isReading,
         );
+      case ReadingStatus.none:
+        return const SizedBox();
     }
   }
 }

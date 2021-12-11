@@ -1,4 +1,5 @@
 import 'package:bookmark_codebase/business_logic/models/objects/book.dart';
+import 'package:bookmark_codebase/business_logic/services/providers/bookshelf/handle_bookshelves.dart';
 import 'package:bookmark_codebase/components/directions/custom_directionality.dart';
 import 'package:bookmark_codebase/components/expansion_panel/expansion_panel.dart';
 import 'package:bookmark_codebase/components/expansion_panel/expansion_panel_header.dart';
@@ -8,17 +9,24 @@ import 'package:bookmark_codebase/utils/constants/color_constants.dart';
 import 'package:bookmark_codebase/utils/enums/reading_status_enums.dart';
 import 'package:bookmark_codebase/utils/methods/set_by_reading_status/set_string_by_reading_status.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ExpandableCollection extends StatelessWidget {
   final ReadingStatus readingStatus;
-  final List<Book> books;
 
   const ExpandableCollection(
-      {Key? key, required this.readingStatus, required this.books})
+      {Key? key, required this.readingStatus})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var wModel = context.watch<HandlingBookshelvesProvider>();
+    List<Book> books = [];
+    if(readingStatus==ReadingStatus.readBefore){
+      books = wModel.readBefore.reversed.toList();
+    }else if(readingStatus==ReadingStatus.isReading){
+      books = wModel.isReading.reversed.toList();
+    }
     TextTheme textTheme = Theme.of(context).textTheme;
     return RTLDirection(
       child: Scaffold(

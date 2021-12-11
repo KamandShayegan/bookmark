@@ -14,9 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class GoingToReadCollection extends StatefulWidget {
-  final List<Book> books;
 
-  const GoingToReadCollection({Key? key, required this.books})
+  const GoingToReadCollection({Key? key})
       : super(key: key);
 
   @override
@@ -30,8 +29,9 @@ class _GoingToReadCollectionState extends State<GoingToReadCollection> {
   Widget build(BuildContext context) {
     TextTheme textTheme = Theme.of(context).textTheme;
     var rModel = context.read<HandlingBookshelvesProvider>();
+    var wModel = context.watch<HandlingBookshelvesProvider>();
     ReadingStatus readingStatus = ReadingStatus.goingToRead;
-
+    List<Book> books = wModel.goingToRead;
     // _onDismissed(int index) async {
     //   setState(() {
     //     // rModel.goingToRead.removeAt(i);
@@ -71,18 +71,18 @@ class _GoingToReadCollectionState extends State<GoingToReadCollection> {
                         itemBuilder: (builder, i) {
                           return CustomDismissible(
                             readingStatus: readingStatus,
-                            book: widget.books[i],
+                            book: books[i],
                             child: GoingToReadContainer(
                               onTap: () async {
                                 setState(() {
                                   load = true;
                                 });
-                                await _addBook(context, widget.books[i]);
+                                await _addBook(context, books[i]);
                                 setState(() {
                                   load = false;
                                 });
                               },
-                              book: widget.books[i],
+                              book: books[i],
                             ),
                           );
                         },

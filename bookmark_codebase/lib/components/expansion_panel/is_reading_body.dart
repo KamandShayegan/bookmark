@@ -41,12 +41,11 @@ class _IsReadingExpansionBodyState extends State<IsReadingExpansionBody> {
 
   @override
   Widget build(BuildContext context) {
-    double progress = ActionsOnPageCounts().calculateBookProgressFrom1(
-        widget.book.currentPage, widget.book.pageCount);
+    var rModel = context.read<HandlingBookshelvesProvider>();
     int lastPage = widget.book.pageCount;
     var size = MediaQuery.of(context).size;
     String dateTime = DateTimeCalculations()
-        .DateTimeToJalaliWithFormattedResult(
+        .dateTimeToJalaliWithFormattedResult(
             widget.book.startDate ?? DateTime.now());
     return Center(
       child: RTLDirection(
@@ -63,7 +62,7 @@ class _IsReadingExpansionBodyState extends State<IsReadingExpansionBody> {
                     .apply(color: Colors.black38.withOpacity(0.3)),
               ),
             ),
-            CustomCircularPercentIndicator(progress: progress),
+            CustomCircularPercentIndicator(book: widget.book),
             const SizedBox(
               height: 8,
             ),
@@ -78,27 +77,27 @@ class _IsReadingExpansionBodyState extends State<IsReadingExpansionBody> {
                   width: 8,
                 ),
                 SizedBox(
-                    // height: size.height * 0.1,
-                    width: size.width * 0.25,
-                    child: Form(
-                      key: _key,
-                      onChanged: () {
-                        validated = _key.currentState!.validate();
-                        if (_controller.text == '' ||
-                            int.parse(_controller.text) ==
-                                widget.book.currentPage) {
-                          validated = false;
-                        }
-                        setState(() {});
-                      },
-                      child: UpdatingCurrentPageTextFormField(
-                        currentPageAsHint: widget.book.currentPage,
-                        controller: _controller,
-                        lastPage: lastPage,
-                        book: widget.book,
-                      ),
-                    )
+                  // height: size.height * 0.1,
+                  width: size.width * 0.25,
+                  child: Form(
+                    key: _key,
+                    onChanged: () {
+                      validated = _key.currentState!.validate();
+                      if (_controller.text == '' ||
+                          int.parse(_controller.text) ==
+                              widget.book.currentPage) {
+                        validated = false;
+                      }
+                      setState(() {});
+                    },
+                    child: UpdatingCurrentPageTextFormField(
+                      currentPageAsHint: widget.book.currentPage,
+                      controller: _controller,
+                      lastPage: lastPage,
+                      book: widget.book,
                     ),
+                  ),
+                ),
                 const SizedBox(
                   width: 8,
                 ),
@@ -116,20 +115,35 @@ class _IsReadingExpansionBodyState extends State<IsReadingExpansionBody> {
               child: Container(
                 margin: const EdgeInsets.only(bottom: 8, left: 8),
                 child: Button(
-                    title: Text('تمام',
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2!
-                            .apply(color: Colors.white)),
+                  isOn: !(rModel.localCurPage==widget.book.currentPage),
+                    title: Text(
+                      'بروز رسانی',
+                      style: Theme.of(context)
+                          .textTheme
+                          .subtitle2!
+                          .apply(color: Colors.white),
+                    ),
                     onTap: () {
-                      showDialog(
-                        context: context,
-                        builder: (builder) => FinishedBookAlertDialog(book: widget.book,)
-                      );
+                    if(rModel.localCurPage==0){
+                      rModel.localCurPage=widget.book.pageCount;
+                    }
+                    rModel.setFinishedDate(widget.book);
+                      rModel.setNewCurrentPage(widget.book);
+                      if(widget.book.currentPage==widget.book.pageCount){
+                        showDialog(
+                            context: context,
+                            builder: (builder) {
+                              return FinishedBookAlertDialog(
+                                book: widget.book,
+                              );
+                            });
+                      }
+
                     },
-                    width: 20),
+                    width: 100),
               ),
             ),
+            //---------------------------------------above
             // Align(
             //   alignment: Alignment.bottomLeft,
             //   child: Button(

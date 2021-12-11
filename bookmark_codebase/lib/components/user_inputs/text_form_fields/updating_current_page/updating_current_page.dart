@@ -61,11 +61,8 @@ class _UpdatingCurrentPageTextFormFieldState
       controller: widget.controller,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          var wModel = context.read<HandlingBookshelvesProvider>();
-
-          updatePercentIndicator
-              ? wModel.setNewCurrentPage(widget.book, int.parse(value))
-              : null;
+          var rModel = context.read<HandlingBookshelvesProvider>();
+          rModel.localCurPage = int.parse(value);
         }
       },
     );
