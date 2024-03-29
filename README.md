@@ -16,5 +16,5 @@ Books in the second category (currently reading books), can be opened, and then 
 
 The entire book database is from [Taaghche](https://taaghche.com) which gave its data free and without any authentication.
 
-[Bachelor thesis project demo](https://img.youtube.com/vi/RqArrwD899E/0.jpg)](https://www.youtube.com/watch?v=RqArrwD899E)
+[[Bachelor thesis project demo](https://img.youtube.com/vi/RqArrwD899E/0.jpg)](https://www.youtube.com/watch?v=RqArrwD899E)
 
