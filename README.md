@@ -13,7 +13,7 @@ Bookmark makes it easier for users to keep track of the books they are reading/w
 
 ### Some features include
 - Books in each category can be deleted.
-- Currently reading books can be opened, and then the user can update the current page they have read using a page indicator.
+- "Currently reading books" can be opened, and then the user can update the current page they have read using a page indicator.
 
 ## Installation
 1. Pre-requisites:
