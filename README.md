@@ -1,21 +1,29 @@
-# bookmark
-Bachelor's Project
+# Bookmark - Bachelor's Thesis Project
+Bookmark makes it easier for users to keep track of the books they are reading/will read/ or have read.
 
-The application is called **Bookmark**. Bookmark makes it easier for users to keep track of their current pages. In addition, users
-can keep the books they have read before and they can also add their required books to *read in the future*.
+## Demo:
+[![Bachelor thesis project demo](https://img.youtube.com/vi/RqArrwD899E/0.jpg)](https://www.youtube.com/watch?v=RqArrwD899E)
 
-Bookmark puts user's books into three categories:
+### Dataset: [Taaghche](https://taaghche.com) 
 
+### Bookmark puts user's books into three categories:
 * books the user wants to read in the future
 * books the user is currently reading
 * books the user has read before
 
-Books in each category can be deleted.\
-Books in the second category (currently reading books), can be opened, and then the user can update the current page they have read using a page indicator
-(with required validations).
+### Some features include
+- Books in each category can be deleted.
+- Currently reading books can be opened, and then the user can update the current page they have read using a page indicator.
 
-The entire book database is from [Taaghche](https://taaghche.com) which gave its data free and without any authentication.
+## Installation
+1. Pre-requisites:
+- **Flutter**: You need to have Flutter installed. Follow the instructions on the [Flutter official website](https://flutter.dev/docs/get-started/install) to install it.
+- **Dart**: Flutter comes with Dart, but ensure you have the latest version by running `flutter upgrade`.
+2. Clone Repository
+3. Install Dependencies: `flutter pub get`
+4. Connect your device by cable or run an emulator (AVD)
+5. Run the app: `Flutter run`
 
-## Demo:
-[![Bachelor thesis project demo](https://img.youtube.com/vi/RqArrwD899E/0.jpg)](https://www.youtube.com/watch?v=RqArrwD899E)
+
+
 
